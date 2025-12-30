@@ -1770,11 +1770,6 @@ h1 span.break, h2 span.break, p span.break{
   .table-row {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-  }
-
-  .table-row:last-child {
-    border-bottom: none;
   }
 
   .cell {
@@ -1783,6 +1778,7 @@ h1 span.break, h2 span.break, p span.break{
     align-items: center;
     justify-content: center;
     border-right: 1px solid rgba(255, 255, 255, 0.10);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
     font-size: 14px;
     color: var(--text-light);
     line-height: 1.4;
@@ -1797,6 +1793,10 @@ h1 span.break, h2 span.break, p span.break{
 
   .cell:last-child {
     border-right: none;
+  }
+
+  .table-row:last-child  .cell{
+    border-bottom: none;
   }
 
   .header-row {
@@ -3615,6 +3615,9 @@ filter: blur(75px);
   padding: 10px 15px;
   min-width: 204px;
 }
+.heading-tr{
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
 .table-heading {
   position: sticky;
   top: 110px;
@@ -3624,7 +3627,6 @@ filter: blur(75px);
   font-family: var(--Unbounded);
   padding: 15px 0;
   text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   z-index: 90;
 }
 .table-heading p{
@@ -4109,35 +4111,35 @@ filter: blur(75px);
 }
 
 @media(max-width: 991px){
-  .compare-table {
-      min-width: 960px;
-  }
-  .sticky-header th:first-child,
-.compare-table td:first-child, .heading-tr {
-  position: sticky;
-  left: -1px;
-  background-color: #050505;
-  z-index: 10;
+.compare-table {
+    min-width: 960px;
 }
-      .btn {
-        padding: 12px 20px;
-        font-size: 14px;
-    }
-      .header-wrap ul li a {
-        padding: 12px;
-        font-size: 14px;
-    }
-      .logo a img {
-        max-height: 36px;
-      }
-  .header-wrap .logo{
-    min-width: auto;
-  }
-  .fw-first{
-      flex: 40% 1 1;
-  }
-  .common-section {
-    padding: 50px 0;
+.sticky-header th:first-child, .compare-table td:first-child, .heading-tr th {
+    position: -webkit-sticky;
+    position: sticky;
+    left: -1px;
+    z-index: 10;
+    background: linear-gradient(90deg, #04050e, #0e0f14);
+}
+.btn {
+  padding: 12px 20px;
+  font-size: 14px;
+}
+.header-wrap ul li a {
+  padding: 12px;
+  font-size: 14px;
+}
+.logo a img {
+  max-height: 36px;
+}
+.header-wrap .logo{
+  min-width: auto;
+}
+.fw-first{
+    flex: 40% 1 1;
+}
+.common-section {
+  padding: 50px 0;
 }
 .home-hero-section{
   padding-top: 120px;

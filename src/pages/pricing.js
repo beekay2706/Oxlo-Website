@@ -326,7 +326,7 @@ export default function Pricing() {
               <tbody>
                 {/* Usage & Limits */}
                 <tr className="heading-tr">
-                  <th colSpan="5" className="table-heading">
+                  <th className="table-heading">
                     Usage & Limits
                   </th>
                 </tr>
@@ -361,7 +361,7 @@ export default function Pricing() {
 
                 {/* Models & Performance */}
                 <tr className="heading-tr">
-                  <th colSpan="5" className="table-heading">
+                  <th className="table-heading">
                     Models & Performance
                   </th>
                 </tr>
@@ -389,7 +389,7 @@ export default function Pricing() {
 
                 {/* Request & Context Limits */}
                 <tr className="heading-tr">
-                  <th colSpan="5" className="table-heading">
+                  <th className="table-heading">
                     Request & Context Limits
                     <p>(Caps are for safety and performance, not billing)</p>
                   </th>
@@ -411,7 +411,7 @@ export default function Pricing() {
 
                 {/* Pricing & Billing */}
                 <tr className="heading-tr">
-                  <th colSpan="5" className="table-heading">
+                  <th className="table-heading">
                     Pricing & Billing
                   </th>
                 </tr>
@@ -446,7 +446,7 @@ export default function Pricing() {
 
                 {/* Developer Experience */}
                 <tr className="heading-tr">
-                  <th colSpan="5" className="table-heading">
+                  <th className="table-heading">
                     Developer Experience
                   </th>
                 </tr>
@@ -481,7 +481,7 @@ export default function Pricing() {
 
                 {/* Infrastructure & Technical Differentiation */}
                 <tr className="heading-tr">
-                  <th colSpan="5" className="table-heading">
+                  <th className="table-heading">
                     Infrastructure & Technical Differentiation
                   </th>
                 </tr>
