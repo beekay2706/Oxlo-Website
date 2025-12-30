@@ -216,7 +216,7 @@ export default function Pricing() {
                 </ul>
                 <Button
                   title="Email Us!"
-                  link="https://portal.oxlo.ai/"
+                  link="mailto:hello@oxlo.ai"
                   size="btn-sm"
                   theme="dark"
                 />
@@ -315,7 +315,7 @@ export default function Pricing() {
                       <div className="price">Custom pricing</div>
                        <Button
                         title="Email Us!"
-                        link="https://portal.oxlo.ai/"
+                        link="mailto:hello@oxlo.ai"
                         size="btn-md"
                         theme="dark"
                       />

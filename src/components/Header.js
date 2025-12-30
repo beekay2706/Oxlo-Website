@@ -22,8 +22,8 @@ const Header = () => {
                     <Link href="https://portal.oxlo.ai/">Products</Link>
                     <div className='dropdown'>
                         <ul>
-                            <li onClick={()=>setToggle(!toggle)}><Link href="https://portal.oxlo.ai/" className={`${router.asPath === "/" ? "active" : ""}`}>OxAPI</Link></li>
-                            <li onClick={()=>setToggle(!toggle)}><Link href="https://portal.oxlo.ai/" className={`${router.asPath === "/" ? "active" : ""}`}>OxCompute <small>(Coming Soon)</small></Link></li>
+                            <li onClick={()=>setToggle(!toggle)}><Link href="https://portal.oxlo.ai/" className={`${router.asPath === "/" ? "" : ""}`}>OxAPI</Link></li>
+                            <li onClick={()=>setToggle(!toggle)}><Link href="https://portal.oxlo.ai/" className={`${router.asPath === "/" ? "" : ""}`}>OxCompute <small>(Coming Soon)</small></Link></li>
                         </ul>
                     </div>
                 </li>

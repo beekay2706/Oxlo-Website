@@ -29,8 +29,8 @@ const Footer = () => {
             <div className='fw-content fw-second'>
                 <div className='content-wrap'>
                 <ul className='fw-link'>
-                <li><Link href="https://portal.oxlo.ai/" className={`${router.asPath === "" ? "" : ""}`}>OxAPI</Link></li>
-                <li><Link href="https://portal.oxlo.ai/" className={`${router.asPath === "" ? "" : ""}`}>OxCompute <small>(Coming Soon)</small></Link></li>
+                {/* <li><Link href="https://portal.oxlo.ai/" className={`${router.asPath === "" ? "" : ""}`}>OxAPI</Link></li>
+                <li><Link href="https://portal.oxlo.ai/" className={`${router.asPath === "" ? "" : ""}`}>OxCompute <small>(Coming Soon)</small></Link></li> */}
                 <li><Link href="/models" className={`${router.asPath === "/models" ? "" : ""}`}>Models</Link></li>
                 <li><Link href="/pricing" className={`${router.asPath === "/pricing" ? "" : ""}`}>Pricing</Link></li>
                 <li><Link href="mailto:hello@oxlo.ai" className={`${router.asPath === "" ? "" : ""}`}>Contact Us</Link></li>
