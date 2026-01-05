@@ -7,6 +7,7 @@ import Telegram from './icons/Telegram'
 import Medium from './icons/Medium'
 import { useRouter } from 'next/router'
 import Github from './icons/Github'
+import Discord from './icons/Discord'
 
 const Footer = () => {
 
@@ -21,8 +22,8 @@ const Footer = () => {
             <ul className='social'>
                 <li><Link className='twitter' href="https://x.com/Oxlo_ai"><Twitter/></Link></li>
                 <li><Link href="https://www.linkedin.com/company/oxlo-ai/"><Linkedin/></Link></li>
-                {/* <li><Link href="/"><Telegram/></Link></li>
-                <li><Link href="/"><Medium/></Link></li>
+                <li><Link href="https://discord.com/invite/pNyQChTv"><Discord/></Link></li>
+                {/* <li><Link href="/"><Medium/></Link></li>
                 <li><Link href="/"><Github/></Link></li> */}
             </ul>
             </div>
