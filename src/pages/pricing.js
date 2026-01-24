@@ -125,7 +125,7 @@ export default function Pricing() {
                 <div className="limit-title">Limit:</div>
                 <ul>
                   <li>
-                    <span className="bullet"></span> 500 requests / hour
+                    <span className="bullet"></span> 500 requests / day
                   </li>
                   <li>
                     <span className="bullet"></span> Optimized models under 8B parameters
@@ -169,7 +169,7 @@ export default function Pricing() {
                 <div className="limit-title">Limit:</div>
                 <ul>
                   <li>
-                    <span className="bullet"></span> 5,000 requests / hour
+                    <span className="bullet"></span> 5,000 requests / day
                   </li>
                   <li>
                     <span className="bullet"></span> Production-grade performance
@@ -184,7 +184,7 @@ export default function Pricing() {
                   No charges until day 31. Cancel anytime
                 </p>
                 <div className="limit-title">
-                  Everything in Starter, plus
+                  Everything in Pro, plus
                 </div>
                 <ul>
                   <li>
@@ -222,7 +222,7 @@ export default function Pricing() {
                 />
                 <p className="payment-info"></p>
                 <div className="limit-title">
-                  Everything in Pro, plus
+                  Everything in Premium, plus
                 </div>
                 <ul>
                   <li>
@@ -333,14 +333,14 @@ export default function Pricing() {
                 <tr>
                   <td className="feature-name">Requests included</td>
                   <td className="plan-col value">100 / day</td>
-                  <td className="plan-col value">500 / hour</td>
+                  <td className="plan-col value">500 / day</td>
                   <td className="plan-col value">High request limits</td>
                   <td className="plan-col value">Custom</td>
                 </tr>
                 <tr>
                   <td className="feature-name">Burst rate limit</td>
                   <td className="plan-col value">5 / minute</td>
-                  <td className="plan-col value">60 / min</td>
+                  <td className="plan-col value">30 / min</td>
                   <td className="plan-col value">120 / min (tunable)</td>
                   <td className="plan-col value">Custom</td>
                 </tr>
@@ -354,9 +354,9 @@ export default function Pricing() {
                 <tr>
                   <td className="feature-name">Queued behind paid traffic</td>
                   <td className="plan-col value">Yes</td>
-                  <td className="plan-col value">Yes (Behind Pro)</td>
+                  <td className="plan-col value">Yes (Behind Premium)</td>
                   <td className="plan-col value">No</td>
-                  <td className="plan-col value">No</td>
+                  <td className="plan-col value">No (Dedicated GPUs)</td>
                 </tr>
 
                 {/* Models & Performance */}
@@ -385,6 +385,13 @@ export default function Pricing() {
                   <td className="plan-col value">Medium</td>
                   <td className="plan-col value">Highest</td>
                   <td className="plan-col value">Optional</td>
+                </tr>
+                <tr>
+                  <td className="feature-name">Average Response Latency</td>
+                  <td className="plan-col value">≤ 5 seconds</td>
+                  <td className="plan-col value">≤ 1 second</td>
+                  <td className="plan-col value">≤ 100 ms</td>
+                  <td className="plan-col value">- tunable</td>
                 </tr>
 
                 {/* Request & Context Limits */}
