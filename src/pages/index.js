@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Button from "@/components/Button";
 import rocket from "../../public/images/rocket.svg";
+import rocketColored from "../../public/images/rocketColored.svg";
 import hero from "../../public/images/hero-animation.gif";
 import shock  from "../../public/images/shock.svg";
 import dollar from "../../public/images/dollar.svg";
@@ -10,7 +11,6 @@ import scale from "../../public/images/scale.svg";
 import light from "../../public/images/light.svg";
 import bulb from "../../public/images/idea.svg";
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
 import sixOne from '../../public/images/six/one.svg'
 import sixTwo from '../../public/images/six/two.svg'
 import sixThree from '../../public/images/six/three.svg'
@@ -101,6 +101,9 @@ export default function Home() {
                 <Image src={hero} alt="home-cover-image" />
               </div>
             </motion.div>
+          </div>
+          <div className="highlight-note">
+            <Image src={rocketColored} alt="Rocket" /> 1500+ early access signups in our first week
           </div>
         </div>
       </section>

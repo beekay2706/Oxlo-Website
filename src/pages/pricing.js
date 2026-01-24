@@ -112,7 +112,7 @@ export default function Pricing() {
               <div className="card">
                 <div className="badge hot">Hot</div>
                 <div className="card-up">
-                  <h3>Starter</h3>
+                  <h3>Pro</h3>
                   <p className="offer">
                     (Early bull discount)
                   </p>
@@ -159,7 +159,7 @@ export default function Pricing() {
               <div className="card pro">
                 <div className="badge recommended">Recommended</div>
                 <div className="card-up">
-                  <h3>Pro</h3>
+                  <h3>Premium</h3>
                   <p className="subtitle">For teams running production workloads.</p>
                 </div>
                 <div className="price">
@@ -176,7 +176,7 @@ export default function Pricing() {
                   </li>
                 </ul>
                 <Button
-                  title="Get Pro free for 30 days"
+                  title="Get free for 30 days"
                   link="https://portal.oxlo.ai/"
                   size="btn-md"
                 />
@@ -284,7 +284,7 @@ export default function Pricing() {
                   </th>
                   <th className="plan-col">
                     <div className="plan-header-card">
-                      <h4>Starter</h4>
+                      <h4>Pro</h4>
                       <div className="price">
                         $9.9<span>/month</span>
                       </div>
@@ -298,12 +298,12 @@ export default function Pricing() {
                   </th>
                   <th className="plan-col">
                     <div className="plan-header-card pro">
-                      <h4>Pro</h4>
+                      <h4>Premium</h4>
                       <div className="price">
                         $49.9<span>/month</span>
                       </div>
                       <Button
-                        title="Get Pro free for 30 days"
+                        title="Get free for 30 days"
                         link="https://portal.oxlo.ai/"
                         size="btn-md"
                       />
