@@ -5237,6 +5237,10 @@ nav > ul{
 }
 }
 @media (max-width: 479px){
+    .highlight-note{
+    font-size: 13px;
+  margin: 45px 0 0 0;
+}
 .animated-emblem svg {
     max-width: 56px;
 }
