@@ -4174,6 +4174,11 @@ filter: blur(75px);
 }
 
 @media(max-width: 991px){
+
+.highlight-note{
+  margin: 60px 0 30px 0;
+}
+
 .compare-table {
     min-width: 960px;
 }
@@ -4517,6 +4522,10 @@ filter: blur(75px);
 }
 }
 @media (max-width: 767px){
+  .highlight-note{
+    font-size: 13px;
+  margin: 45px 0 15px 0;
+}
    .box-border, .box-wrap::before, .box-wrap::after{
     display: none;
   }
