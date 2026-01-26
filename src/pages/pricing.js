@@ -132,7 +132,11 @@ export default function Pricing() {
                   </li>
                 </ul>
                 <Button
-                  title="Get 15 bonus days free"
+                  title={
+                    <>
+                      Subscribe Now  <small>Get 15 days extra for free</small>
+                    </>
+                  }
                   link="https://portal.oxlo.ai/"
                   size="btn-md"
                   theme="dark"
@@ -176,7 +180,11 @@ export default function Pricing() {
                   </li>
                 </ul>
                 <Button
-                  title="Get 2 months for the price of 1"
+                  title={
+                    <>
+                      Subscribe Now <small>Get 30 days extra for free</small>
+                    </>
+                  }
                   link="https://portal.oxlo.ai/"
                   size="btn-md"
                 />
@@ -289,7 +297,11 @@ export default function Pricing() {
                         $9.9<span>/month</span>
                       </div>
                        <Button
-                        title="Get 15 bonus days free"
+                        title={
+                          <>
+                            Subscribe Now  <small>Get 15 days extra for free</small>
+                          </>
+                        }
                         link="https://portal.oxlo.ai/"
                         size="btn-md"
                         theme="dark"
@@ -303,7 +315,11 @@ export default function Pricing() {
                         $49.9<span>/month</span>
                       </div>
                       <Button
-                        title="Get 2 months for the price of 1"
+                        title={
+                          <>
+                            Subscribe Now  <small>Get 30 days extra for free</small>
+                          </>
+                        }
                         link="https://portal.oxlo.ai/"
                         size="btn-md"
                       />

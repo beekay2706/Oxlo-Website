@@ -3557,7 +3557,16 @@ filter: blur(75px);
 
 .card .btn {
     font-size: 14px;
-    padding: 13px 15px;
+    padding: 7px 15px;
+    gap: 2px;
+    flex-direction: column;
+    align-items: center;
+    min-height: 48px;
+}
+
+.card .btn small{
+  font-size: 12px;
+  font-family: var(--Inter);
 }
 
 .payment-info{
@@ -3619,9 +3628,18 @@ filter: blur(75px);
   color: var(--text-light-75);
 }
 .plan-header-card .btn{
-  font-size: 12px;
-  padding: 10px 15px;
+  font-size: 13px;
+  padding: 6px 15px;
   min-width: 204px;
+  gap: 2px;
+  flex-direction: column;
+  align-items: center;
+  min-height: 44px;
+}
+
+.plan-header-card .btn small{
+  font-size: 11px;
+  font-family: var(--Inter);
 }
 .heading-tr{
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
@@ -3678,12 +3696,12 @@ filter: blur(75px);
 }
 .highlight-note{
   font-size: 15px;
-  color: var(--text-light);
+  color: var(--text-green);
   padding: 12px 15px;
   text-align: center;
   display: flex;
   gap: 7px;
-  margin: 40px 0;
+  margin: 80px 0 40px 0;
   position: relative;
   align-items:center;
   justify-content: center;
