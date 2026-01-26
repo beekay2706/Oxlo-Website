@@ -132,13 +132,13 @@ export default function Pricing() {
                   </li>
                 </ul>
                 <Button
-                  title="Start free for 15 days"
+                  title="Get 15 bonus days free"
                   link="https://portal.oxlo.ai/"
                   size="btn-md"
                   theme="dark"
                 />
                 <p className="payment-info">
-                  Credit Card required. Billing starts after the trial period ends.
+                  Billed today. Includes 15 extra free days added to your first billing cycle.
                 </p>
                 <div className="limit-title">
                   Everything in Free, plus
@@ -176,12 +176,12 @@ export default function Pricing() {
                   </li>
                 </ul>
                 <Button
-                  title="Get free for 30 days"
+                  title="Get 2 months for the price of 1"
                   link="https://portal.oxlo.ai/"
                   size="btn-md"
                 />
                 <p className="payment-info">
-                  No charges until day 31. Cancel anytime
+                  Billed today. Includes extra 30 days free on your first billing cycle.
                 </p>
                 <div className="limit-title">
                   Everything in Pro, plus
@@ -289,7 +289,7 @@ export default function Pricing() {
                         $9.9<span>/month</span>
                       </div>
                        <Button
-                        title="Start free for 15 days"
+                        title="Get 15 bonus days free"
                         link="https://portal.oxlo.ai/"
                         size="btn-md"
                         theme="dark"
@@ -303,7 +303,7 @@ export default function Pricing() {
                         $49.9<span>/month</span>
                       </div>
                       <Button
-                        title="Get free for 30 days"
+                        title="Get 2 months for the price of 1"
                         link="https://portal.oxlo.ai/"
                         size="btn-md"
                       />

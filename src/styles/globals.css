@@ -1116,7 +1116,7 @@ h1 span.break, h2 span.break, p span.break{
     position: relative;
     text-align: right;
     background: var(--bg-body);
-    max-width: 480px;
+    max-width: 470px;
     margin-left: auto;
 }
 .animated-emblem{
@@ -1157,7 +1157,7 @@ h1 span.break, h2 span.break, p span.break{
   }
 }
 .hw-right img {
-    max-width: 480px;
+    max-width: 470px;
     width: 100%;
     height: auto;
     mix-blend-mode: screen;
@@ -3683,7 +3683,7 @@ filter: blur(75px);
   text-align: center;
   display: flex;
   gap: 7px;
-  margin: 15px 0;
+  margin: 40px 0;
   position: relative;
   align-items:center;
   justify-content: center;
@@ -4542,7 +4542,7 @@ filter: blur(75px);
   padding: 0 15px;
 }
 .hw-right img {
-  max-width: 480px;
+  max-width:460px;
 }
   .headline p{
     padding-right: 45px;
