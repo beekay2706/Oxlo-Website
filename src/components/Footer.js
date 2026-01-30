@@ -23,7 +23,7 @@ const Footer = () => {
             <ul className='social'>
                 <li><Link className='twitter' href="https://x.com/Oxlo_ai"><Twitter/></Link></li>
                 <li><Link href="https://www.linkedin.com/company/oxlo-ai/"><Linkedin/></Link></li>
-                <li><Link href="https://discord.gg/HwsfANJ5Ua"><Discord/></Link></li>
+                <li><Link href="https://discord.gg/qPvNp5X8m6"><Discord/></Link></li>
                 <li><Link href="https://www.instagram.com/oxlo.ai?igsh=MTlyaGJxcGcwN2Rodg=="><Instagram/></Link></li>
                 {/* <li><Link href="/"><Medium/></Link></li>
                 <li><Link href="/"><Github/></Link></li> */}
