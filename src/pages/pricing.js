@@ -80,7 +80,7 @@ export default function Pricing() {
                 <div className="limit-title">Limit:</div>
                 <ul>
                   <li>
-                    <span className="bullet"></span> 100 requests / day
+                    <span className="bullet"></span> 60 requests / day
                   </li>
                   <li>
                     <span className="bullet"></span> Requests may be queued behind paid plans
@@ -119,7 +119,7 @@ export default function Pricing() {
                   <p className="subtitle">For builders running early apps and prototypes.</p>
                 </div>
                 <div className="price">
-                  $9.9 <span className="original-price">$30</span>
+                  $14.9 <span className="original-price">$35</span>
                   <span>/month</span>
                 </div>
                 <div className="limit-title">Limit:</div>
@@ -173,7 +173,7 @@ export default function Pricing() {
                 <div className="limit-title">Limit:</div>
                 <ul>
                   <li>
-                    <span className="bullet"></span> 5,000 requests / day
+                    <span className="bullet"></span> 2,000 requests / day
                   </li>
                   <li>
                     <span className="bullet"></span> Production-grade performance
@@ -294,7 +294,7 @@ export default function Pricing() {
                     <div className="plan-header-card">
                       <h4>Pro</h4>
                       <div className="price">
-                        $9.9<span>/month</span>
+                        $14.9<span>/month</span>
                       </div>
                        <Button
                         title={
