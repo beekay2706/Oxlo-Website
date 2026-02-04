@@ -125,7 +125,7 @@ export default function Pricing() {
                 <div className="limit-title">Limit:</div>
                 <ul>
                   <li>
-                    <span className="bullet"></span> 500 requests / day
+                    <span className="bullet"></span> 300 requests / day
                   </li>
                   <li>
                     <span className="bullet"></span> Optimized models under 8B parameters
@@ -349,7 +349,7 @@ export default function Pricing() {
                 <tr>
                   <td className="feature-name">Requests included</td>
                   <td className="plan-col value">100 / day</td>
-                  <td className="plan-col value">500 / day</td>
+                  <td className="plan-col value">300 / day</td>
                   <td className="plan-col value">High request limits</td>
                   <td className="plan-col value">Custom</td>
                 </tr>
@@ -404,7 +404,7 @@ export default function Pricing() {
                 </tr>
                 <tr>
                   <td className="feature-name">Average Response Latency</td>
-                  <td className="plan-col value">≤ 5 seconds</td>
+                  <td className="plan-col value">≤ 7 seconds</td>
                   <td className="plan-col value">≤ 1 second</td>
                   <td className="plan-col value">≤ 100 ms</td>
                   <td className="plan-col value">- tunable</td>
