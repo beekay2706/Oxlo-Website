@@ -3352,6 +3352,12 @@ filter: blur(75px);
   background: var(--bg-btn-hover);
 }
 
+.deploy-btn.comming-soon {
+  background: var(--bg-btn);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .star {
   font-style: normal;
 }
