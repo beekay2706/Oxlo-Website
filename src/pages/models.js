@@ -488,7 +488,7 @@ const [searchQuery, setSearchQuery] = useState("")
                       })}
                     </div>
                     {!model.commingSoon ? (
-                      <a href="https://portal.oxlo.ai/" className="deploy-btn">Deploy <MoveRight size={15} /></a>
+                      <a href="https://portal.oxlo.ai/admin/models" className="deploy-btn">Deploy <MoveRight size={15} /></a>
                     ) : (
                       <a href="" className="deploy-btn comming-soon">Comming Soon</a>
                     )}
