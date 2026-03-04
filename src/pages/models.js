@@ -363,6 +363,10 @@ const FILTER_TAGS = [
   { id: "Code", color: "#3b82f6" },
   { id: "Computer Vision", color: "#a855f7" },
   { id: "Vision-Language Model", color: "#60a5fa" },
+  { id: "Speech to Text", color: "#ec4899" },
+  { id: "Text to Speech", color: "#ec4899" },
+  { id: "Long Context", color: "#c9d010" },
+  { id: "Chat", color: "#851eec" },
 ]
 
 const [searchQuery, setSearchQuery] = useState("")

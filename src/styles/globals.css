@@ -3320,7 +3320,8 @@ filter: blur(75px);
 
 .card-tags {
   display: flex;
-  gap: 12px;
+  gap: 6px 12px;
+  flex-wrap: wrap;
 }
 
 .card-tag {
@@ -3345,6 +3346,7 @@ filter: blur(75px);
   font-weight: var(--regular);
   font-family: var(--Unbounded);
   cursor: pointer;
+  white-space: nowrap;
   transition: background 0.2s;
 }
 
