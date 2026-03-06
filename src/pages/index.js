@@ -22,7 +22,7 @@ import oxlo from '../../public/images/logo-dark.svg'
 import firework from '../../public/images/firework.svg'
 import openrouter from '../../public/images/openrouter.svg'
 import together from '../../public/images/together.svg'
-import f6s from '../../public/images/f6s.jpg'
+import f6s from '../../public/images/f6s.png'
 import STL from '../../public/images/STL.webp'
 import TopProd from '../../public/images/badge.png'
 
