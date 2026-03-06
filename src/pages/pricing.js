@@ -348,7 +348,7 @@ export default function Pricing() {
                 </tr>
                 <tr>
                   <td className="feature-name">Requests included</td>
-                  <td className="plan-col value">100 / day</td>
+                  <td className="plan-col value">60 / day</td>
                   <td className="plan-col value">300 / day</td>
                   <td className="plan-col value">High request limits</td>
                   <td className="plan-col value">Custom</td>

@@ -3742,9 +3742,23 @@ filter: blur(75px);
   width: 26px; 
   height: 26px;
 }
-
-
-
+.achievement-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px 45px;
+  margin: 70px 0 30px 0;
+}
+.achievement-wrap a img{
+  width: auto;
+  max-height: 64px;
+  border-radius: 10px;
+}
+.achievement-wrap a:first-child img{
+  max-height: 74px;
+  border-radius: 0;
+}
 
 
 
@@ -4187,6 +4201,10 @@ filter: blur(75px);
   margin: 60px 0 30px 0;
 }
 
+.achievement-wrap{
+  margin: 50px 0 25px 0;
+}
+
 .compare-table {
     min-width: 960px;
 }
@@ -4533,6 +4551,9 @@ filter: blur(75px);
   .highlight-note{
     font-size: 13px;
   margin: 45px 0 15px 0;
+}
+.achievement-wrap{
+  margin: 45px 0 5px 0;
 }
    .box-border, .box-wrap::before, .box-wrap::after{
     display: none;

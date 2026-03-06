@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from 'next/link'
 import Button from "@/components/Button";
 import rocket from "../../public/images/rocket.svg";
 import rocketColored from "../../public/images/rocketColored.svg";
@@ -21,6 +22,9 @@ import oxlo from '../../public/images/logo-dark.svg'
 import firework from '../../public/images/firework.svg'
 import openrouter from '../../public/images/openrouter.svg'
 import together from '../../public/images/together.svg'
+import f6s from '../../public/images/f6s.jpg'
+import STL from '../../public/images/STL.webp'
+import TopProd from '../../public/images/badge.png'
 
 export default function Home() {
 
@@ -102,8 +106,20 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-          <div className="highlight-note">
+          {/* <div className="highlight-note">
             <Image src={rocketColored} alt="Rocket" /> 1500+ early access signups in our first week
+          </div> */}
+          <div className="achievement-wrap">
+            <Link href="https://stlpartners.com/articles/edge-computing/50-edge-computing-companies-to-watch-in-2026/"
+               target="_blank" rel="noopener">
+                <Image src={STL} alt="STL Partners — Top edge companies for 2026"/>
+            </Link>
+            <Link href="https://www.f6s.com/company/cyborg-network" target="_blank" rel="noopener">
+                <Image src={f6s} alt="AI"/>
+            </Link>
+            <Link href="https://peerpush.net/p/oxloai-uosi" target="_blank" rel="noopener">
+                <Image src={TopProd} alt="AI"/>
+            </Link>
           </div>
         </div>
       </section>
