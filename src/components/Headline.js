@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import Close from './Close'
+import React, { useState } from 'react'
+import Close from './Close';
+import Button from "@/components/Button";
 import rocket from "../../public/images/rocket.svg";
 import Image from 'next/image';
 
@@ -13,7 +14,12 @@ const Headline = () => {
 
   return (
     <div className={`headline ${status}`}>
-        <p><Image src={rocket} alt="Rocket" /> 1500+ early access signups in our first week</p>
+        <p>Are you an AI builder, Join our OxBuild hackathon to showcase you skills</p>
+        <Button
+          title="Join Now"
+          link="https://dorahacks.io/hackathon/oxloai/"
+          size="btn-sm light"
+        />
         <span onClick={updateStatus}><Close/></span>
     </div>
   )

@@ -145,6 +145,7 @@ a{
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    font-family: var(--Inter);
 }
 .headline a{
   color: var(--text-dark);
@@ -330,7 +331,13 @@ header {
   display: inline-flex;
   justify-content: center;
   gap: 5px;
+  text-decoration: none !important;
   transition: all 0.5s linear;
+}
+.btn-sm{
+  font-size: 14px;
+  min-width: 72px !important;
+  padding: 10px 16px;
 }
 .btn:hover{
   background: var(--bg-btn-hover);

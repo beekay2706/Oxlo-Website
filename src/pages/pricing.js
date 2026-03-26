@@ -132,18 +132,12 @@ export default function Pricing() {
                   </li>
                 </ul>
                 <Button
-                  title={
-                    <>
-                      Subscribe Now  <small>Get 15 days extra for free</small>
-                    </>
-                  }
+                  title="Subscribe now"
                   link="https://portal.oxlo.ai/"
                   size="btn-md"
                   theme="dark"
                 />
-                <p className="payment-info">
-                  Billed today. Includes 15 extra free days added to your first billing cycle.
-                </p>
+                <p className="payment-info">7 day free trial</p>
                 <div className="limit-title">
                   Everything in Free, plus
                 </div>
@@ -180,16 +174,12 @@ export default function Pricing() {
                   </li>
                 </ul>
                 <Button
-                  title={
-                    <>
-                      Subscribe Now <small>Get 30 days extra for free</small>
-                    </>
-                  }
+                  title="Subscribe now"
                   link="https://portal.oxlo.ai/"
                   size="btn-md"
                 />
                 <p className="payment-info">
-                  Billed today. Includes extra 30 days free on your first billing cycle.
+                  7 day free trial.
                 </p>
                 <div className="limit-title">
                   Everything in Pro, plus
@@ -297,11 +287,7 @@ export default function Pricing() {
                         $14.9<span>/month</span>
                       </div>
                        <Button
-                        title={
-                          <>
-                            Subscribe Now  <small>Get 15 days extra for free</small>
-                          </>
-                        }
+                        title="7 day free trial"
                         link="https://portal.oxlo.ai/"
                         size="btn-md"
                         theme="dark"
@@ -315,11 +301,7 @@ export default function Pricing() {
                         $49.9<span>/month</span>
                       </div>
                       <Button
-                        title={
-                          <>
-                            Subscribe Now  <small>Get 30 days extra for free</small>
-                          </>
-                        }
+                        title="7 day free trial"
                         link="https://portal.oxlo.ai/"
                         size="btn-md"
                       />
