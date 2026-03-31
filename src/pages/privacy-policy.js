@@ -4,11 +4,16 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Head>
-        <title>Privacy Policy</title>
+        <title>Privacy Policy - Oxlo.ai</title>
         <meta
           name="description"
-          content="A developer-first AI Inference platform with radically lower compute costs."
+          content="Oxlo.ai privacy policy. Learn how we collect, use, and protect your personal data under DIFC Data Protection Law. Data controller: ResoluteX Technology Labs Ltd."
         />
+        <link rel="canonical" href="https://oxlo.ai/privacy-policy" />
+        <meta property="og:title" content="Privacy Policy - Oxlo.ai" />
+        <meta property="og:description" content="How Oxlo.ai collects, uses, and protects your personal data." />
+        <meta property="og:url" content="https://oxlo.ai/privacy-policy" />
+        <meta name="robots" content="index, follow" />
       </Head>
       <section className="common-section legal-hero-section">
         <div className="container">

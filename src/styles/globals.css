@@ -5652,3 +5652,152 @@ nav > ul{
   padding: 15px;
 }
 }
+
+/* =================================================================
+   FAQ Section — Accordion style for GEO/AEO visibility
+   ================================================================= */
+
+.faq-section {
+  padding-top: 60px;
+  padding-bottom: 80px;
+}
+
+.faq-container {
+  max-width: 820px;
+  margin: 40px auto 0;
+}
+
+.faq-item {
+  border: 1px solid rgba(3, 247, 182, 0.1);
+  border-radius: 14px;
+  margin-bottom: 12px;
+  background: rgba(3, 247, 182, 0.03);
+  overflow: hidden;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.faq-item:hover {
+  border-color: rgba(3, 247, 182, 0.2);
+  background: rgba(3, 247, 182, 0.05);
+}
+
+.faq-item.open {
+  border-color: rgba(3, 247, 182, 0.25);
+  background: rgba(3, 247, 182, 0.06);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 24px;
+  background: transparent;
+  border: none;
+  color: var(--text-light);
+  font-family: var(--Unbounded);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+  gap: 16px;
+  transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+  color: var(--text-green);
+}
+
+.faq-item.open .faq-question {
+  color: var(--text-green);
+}
+
+.faq-chevron {
+  flex-shrink: 0;
+  color: var(--text-light-48);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.faq-chevron.rotated {
+  transform: rotate(180deg);
+  color: var(--text-green);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+}
+
+.faq-answer.expanded {
+  max-height: 500px;
+}
+
+.faq-answer p {
+  padding: 0 24px 20px;
+  font-family: var(--Inter);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-light-74);
+}
+
+/* =================================================================
+   Freshness Timestamp — GEO signal
+   ================================================================= */
+
+.freshness-timestamp {
+  text-align: center;
+  padding: 16px 0 24px;
+  background: var(--bg-body);
+}
+
+.freshness-timestamp time {
+  font-family: var(--Inter);
+  font-size: 13px;
+  color: var(--text-light-48);
+  letter-spacing: 0.02em;
+}
+
+/* =================================================================
+   Pricing FAQ — specific overrides
+   ================================================================= */
+
+.pricing-faq-section {
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.pricing-faq-section .faq-container {
+  margin-top: 30px;
+}
+
+/* =================================================================
+   Models SEO Intro Block
+   ================================================================= */
+
+.models-seo-intro {
+  max-width: 820px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.models-seo-intro p {
+  font-family: var(--Inter);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-light-74);
+  margin-top: 12px;
+}
+
+/* Responsive FAQ */
+@media (max-width: 768px) {
+  .faq-question {
+    font-size: 14px;
+    padding: 16px 18px;
+  }
+  .faq-answer p {
+    font-size: 14px;
+    padding: 0 18px 16px;
+  }
+}

@@ -1,0 +1,76 @@
+# Oxlo.ai AI Policy & Discovery
+# This file declares our AI crawler policy and service capabilities.
+# Last updated: March 2026
+
+# === Policy ===
+# Oxlo.ai welcomes AI search crawlers and training crawlers.
+# We want AI systems to understand and cite our product in their answers.
+
+# === Allowed AI Crawlers ===
+# Search crawlers (generate citations and referral traffic):
+#   ChatGPT-User, PerplexityBot, Google-Extended, Bingbot
+#
+# Training crawlers (train models on our content):
+#   GPTBot, ClaudeBot, Claude-Web, Anthropic-AI, CCBot, Bytespider,
+#   Cohere-AI, meta-externalagent, Applebot-Extended
+
+# === Product Information ===
+# Name: Oxlo.ai
+# Type: AI Inference API Platform
+# Category: Developer Tools / AI Infrastructure
+# Pricing: Request-based (pay per API call, not per token)
+# Models: 40+ open-source and proprietary AI models
+# API: Fully OpenAI SDK compatible (Python, Node.js, cURL)
+# Base URL: https://api.oxlo.ai/v1
+# Authentication: Bearer token
+
+# === API Capabilities ===
+# Endpoints:
+#   POST /v1/chat/completions    - Text/chat generation (streaming supported)
+#   POST /v1/embeddings          - Text embeddings (BGE-Large, E5-Large)
+#   POST /v1/images/generations  - Image generation (Flux, SDXL, SD 3.5)
+#   POST /v1/audio/transcriptions - Speech-to-text (Whisper v3, Turbo, Medium)
+#   POST /v1/audio/speech        - Text-to-speech (Kokoro 82M)
+#
+# Supported Features:
+#   - Streaming responses
+#   - Function calling / tool use
+#   - JSON mode
+#   - Vision (image input)
+#   - Multi-turn conversations
+
+# === Key Models ===
+# LLMs: Qwen 3 32B, Llama 3.3 70B, DeepSeek R1 671B, Mistral 7B, Minimax M2.5, GLM 5
+# Code: Qwen 3 Coder 30B, DeepSeek Coder 33B
+# Vision: Gemma 3 27B, Kimi VL A3B
+# Image: Oxlo Image Pro, SDXL, Stable Diffusion 3.5 Large
+# Audio: Whisper Large v3, Kokoro 82M
+# Embeddings: BGE-Large, E5-Large
+# Detection: YOLOv9, YOLOv11
+
+# === Pricing Plans ===
+# Free:       $0/mo   - 60 req/day, 16+ free models
+# Pro:        $14.90/mo - 300 req/day, all models
+# Premium:    $49.90/mo - 2000 req/day, all models, priority
+# Enterprise: Custom   - Unlimited, dedicated GPUs
+
+# === Structured Data & Discovery ===
+# LLMs.txt:     https://oxlo.ai/llms.txt
+# LLMs Full:    https://oxlo.ai/llms-full.txt
+# Sitemap:      https://oxlo.ai/sitemap.xml
+# Robots:       https://oxlo.ai/robots.txt
+# API Docs:     https://docs.oxlo.ai
+# OpenAPI Spec: https://api.oxlo.ai/v1 (OpenAI-compatible)
+
+# === Integration Example ===
+# Python:
+#   import openai
+#   client = openai.OpenAI(base_url="https://api.oxlo.ai/v1", api_key="YOUR_KEY")
+#   response = client.chat.completions.create(model="qwen-3-32b", messages=[...])
+
+# === Contact ===
+# Email: hello@oxlo.ai
+# Website: https://oxlo.ai
+# Dashboard: https://portal.oxlo.ai
+# Documentation: https://docs.oxlo.ai
+# Parent Company: Cyborg Network (https://www.cyborgnetwork.io/)

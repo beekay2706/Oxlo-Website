@@ -6,6 +6,27 @@ import Head from "next/head";
 import { motion } from "framer-motion";
 
 export default function Models() {
+
+// ItemList schema for AI entity discovery
+const modelsItemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Oxlo.ai AI Model Registry",
+  "description": "40+ open-source and proprietary AI models available via Oxlo.ai's request-based API. Includes LLMs, vision, code, image generation, audio, embeddings, and object detection models.",
+  "numberOfItems": 37,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Qwen 3 32B", "description": "State-of-the-art multilingual reasoning and agent tasks" },
+    { "@type": "ListItem", "position": 2, "name": "Llama 3.3 70B", "description": "Meta's flagship 70B parameter general-purpose LLM" },
+    { "@type": "ListItem", "position": 3, "name": "DeepSeek R1 671B", "description": "Deep reasoning and complex coding - full 671B MoE model" },
+    { "@type": "ListItem", "position": 4, "name": "Mistral 7B", "description": "Fast and efficient general-purpose language model" },
+    { "@type": "ListItem", "position": 5, "name": "Whisper Large v3", "description": "OpenAI's best speech-to-text transcription model" },
+    { "@type": "ListItem", "position": 6, "name": "Oxlo Image Pro", "description": "Premium Flux 2-based image generation" },
+    { "@type": "ListItem", "position": 7, "name": "BGE-Large", "description": "BAAI's top-performing text embedding model" },
+    { "@type": "ListItem", "position": 8, "name": "YOLOv9", "description": "State-of-the-art real-time object detection" },
+    { "@type": "ListItem", "position": 9, "name": "Kokoro 82M", "description": "Natural-sounding text-to-speech model" },
+    { "@type": "ListItem", "position": 10, "name": "DeepSeek Coder 33B", "description": "Specialized model for code generation and programming assistance" }
+  ]
+};
   
 const MODELS_DATA = [
   {
@@ -350,6 +371,24 @@ const MODELS_DATA = [
     trending: false,
     commingSoon: true,
   },
+  {
+    id: "minimax-m2-5",
+    title: "Minimax M2.5",
+    description: "Mixture-of-Experts model optimized for coding, agentic tool use, complex workflows, and office productivity tasks.",
+    tags: ["LLM", "Code", "Reasoning"],
+    logo: "/images/models/minimax.png",
+    trending: false,
+    commingSoon: true,
+  },
+  {
+    id: "glm-5",
+    title: "GLM 5",
+    description: "744B parameter MoE model built for complex systems engineering, long-horizon agentic tasks, and advanced reasoning.",
+    tags: ["LLM", "Reasoning", "Code"],
+    logo: "/images/models/zhipu.png",
+    trending: false,
+    commingSoon: true,
+  },
   
 ]
 
@@ -396,10 +435,25 @@ const [searchQuery, setSearchQuery] = useState("")
   return (
     <>
       <Head>
-        <title>Models</title>
+        <title>AI Models - 40+ Open-Source Models for Inference | Oxlo.ai</title>
         <meta
           name="description"
-          content="Model Registry - Choose an open-source model and deploy it in seconds."
+          content="Browse 40+ AI models available on Oxlo.ai: Qwen 3 32B, Llama 3.3 70B, DeepSeek R1, Mistral 7B, Whisper, SDXL, YOLOv9, BGE-Large, and more. Deploy any model in seconds with request-based pricing."
+        />
+        <meta
+          name="keywords"
+          content="AI models, open-source LLM, Qwen 3 32B, Llama 3.3 70B, DeepSeek R1, Mistral 7B, Whisper API, SDXL API, BGE embedding, YOLOv9 API, AI model registry"
+        />
+        <link rel="canonical" href="https://oxlo.ai/models" />
+        <meta property="og:title" content="40+ AI Models for Inference - Oxlo.ai Model Registry" />
+        <meta property="og:description" content="Deploy Qwen 3 32B, Llama 3.3 70B, DeepSeek R1, and 40+ more models in seconds." />
+        <meta property="og:url" content="https://oxlo.ai/models" />
+        <meta name="robots" content="index, follow" />
+
+        {/* Page-specific JSON-LD: ItemList schema for model discovery */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(modelsItemListSchema) }}
         />
       </Head>
 
@@ -429,6 +483,9 @@ const [searchQuery, setSearchQuery] = useState("")
                 </p>
               </motion.div>
             </motion.div>
+
+
+
             <motion.div
               viewport={{ once: true }}
               transition={{
@@ -539,6 +596,9 @@ const [searchQuery, setSearchQuery] = useState("")
           </motion.div>
         </div>
       </section>
+
+
+
     </>
   );
 }

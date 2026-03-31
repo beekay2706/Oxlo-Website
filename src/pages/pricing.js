@@ -1,20 +1,95 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { CircleCheckBig, Info } from "lucide-react"
+import { CircleCheckBig, Info, ChevronDown } from "lucide-react"
 import Head from "next/head";
 import { motion } from "framer-motion";
 import Button from "@/components/Button";
+
+// Pricing page Product schema
+const pricingProductSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Oxlo.ai API",
+  "description": "AI inference API with request-based pricing. Run 40+ open-source models via OpenAI-compatible API. Pay per request, not per token.",
+  "brand": { "@type": "Brand", "name": "Oxlo.ai" },
+  "category": "AI API Service",
+  "offers": [
+    { "@type": "Offer", "name": "Free Plan", "price": "0", "priceCurrency": "USD", "description": "60 requests/day, 16+ free models, community support, no credit card required", "eligibleQuantity": { "@type": "QuantitativeValue", "value": 60, "unitText": "requests per day" } },
+    { "@type": "Offer", "name": "Pro Plan", "price": "14.90", "priceCurrency": "USD", "description": "300 requests/day, all models, high priority queue, 7-day free trial", "eligibleQuantity": { "@type": "QuantitativeValue", "value": 300, "unitText": "requests per day" } },
+    { "@type": "Offer", "name": "Premium Plan", "price": "49.90", "priceCurrency": "USD", "description": "2000 requests/day, all models, highest priority, 32K output tokens, 50 concurrent requests", "eligibleQuantity": { "@type": "QuantitativeValue", "value": 2000, "unitText": "requests per day" } },
+    { "@type": "Offer", "name": "Enterprise Plan", "description": "Custom limits, dedicated GPU routing, SLA, priority support" }
+  ]
+};
+
+const pricingFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does request-based pricing work?",
+      "acceptedAnswer": { "@type": "Answer", "text": "With Oxlo.ai's request-based pricing, you pay a flat monthly subscription that includes a set number of API requests per day. Each request costs the same regardless of how many tokens are in your prompt or response. A 100-token prompt costs the same as a 50,000-token prompt. This is fundamentally different from token-based pricing used by OpenAI, Together AI, Fireworks AI, OpenRouter, and Replicate." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Oxlo.ai cheaper than Together AI, Fireworks AI, and OpenRouter?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For long-context workloads, yes. Together AI, Fireworks AI, and OpenRouter all charge per token, so costs scale linearly with prompt length. Running 500 API calls per day with 3,000-token prompts costs approximately $40-60/month on these providers vs $49.90/month on Oxlo.ai Premium. But as prompt length increases beyond 10,000 tokens, Oxlo.ai can be 10-100x cheaper since every request costs the same flat rate." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Oxlo.ai offer a free trial?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. New users get a 7-day free trial with full access to all 40+ models including Qwen 3 32B, Llama 3.3 70B, DeepSeek R1, and premium image generation. No credit card required to start. The Free tier (60 requests/day, 16+ models) is available permanently." }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I exceed my daily request limit?",
+      "acceptedAnswer": { "@type": "Answer", "text": "When you reach your daily request limit, additional requests are queued until the next day or you can upgrade your plan for higher limits. There are no overage charges - your costs are always predictable and fixed. This is unlike token-based providers where a single runaway prompt can spike your bill." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I switch plans at any time?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, you can upgrade or downgrade your plan at any time. When upgrading, you get immediate access to the higher plan's limits. All plans are billed monthly with no long-term contracts required." }
+    }
+  ]
+};
+
+const PRICING_FAQ_ITEMS = [
+  { question: "How does request-based pricing work?", answer: "With Oxlo.ai's request-based pricing, you pay a flat monthly subscription that includes a set number of API requests per day. Each request costs the same regardless of how many tokens are in your prompt or response. A 100-token prompt costs the same as a 50,000-token prompt. This is fundamentally different from token-based pricing used by OpenAI, Together AI, Fireworks AI, OpenRouter, and Replicate." },
+  { question: "Is Oxlo.ai cheaper than Together AI, Fireworks AI, and OpenRouter?", answer: "For long-context workloads, yes. Together AI, Fireworks AI, and OpenRouter all charge per token, so costs scale linearly with prompt length. Running 500 API calls per day with 3,000-token prompts costs approximately $40-60/month on these providers vs $49.90/month on Oxlo.ai Premium. But as prompt length increases beyond 10,000 tokens, Oxlo.ai can be 10-100x cheaper since every request costs the same flat rate." },
+  { question: "Does Oxlo.ai offer a free trial?", answer: "Yes. New users get a 7-day free trial with full access to all 40+ models including Qwen 3 32B, Llama 3.3 70B, DeepSeek R1, and premium image generation. No credit card required to start. The Free tier (60 requests/day, 16+ models) is available permanently." },
+  { question: "What happens if I exceed my daily request limit?", answer: "When you reach your daily request limit, additional requests are queued until the next day or you can upgrade your plan for higher limits. There are no overage charges - your costs are always predictable and fixed. This is unlike token-based providers where a single runaway prompt can spike your bill." },
+  { question: "Can I switch plans at any time?", answer: "Yes, you can upgrade or downgrade your plan at any time. When upgrading, you get immediate access to the higher plan's limits. All plans are billed monthly with no long-term contracts required." },
+];
 
 export default function Pricing() {
 
   return (
     <>
       <Head>
-        <title>Pricing</title>
+        <title>Pricing - Request-Based AI API Pricing | Oxlo.ai</title>
         <meta
           name="description"
-          content="Choose an open-source model and deploy it in seconds."
+          content="Oxlo.ai pricing: pay per API request, not per token. Free tier ($0, 60 req/day), Pro ($14.90/mo, 300 req/day), Premium ($49.90/mo, 2000 req/day). 40+ AI models, OpenAI SDK compatible. 7-day free trial."
+        />
+        <meta
+          name="keywords"
+          content="AI API pricing, request-based pricing, LLM pricing comparison, Together AI pricing, cheapest AI API, AI inference cost, token vs request pricing"
+        />
+        <link rel="canonical" href="https://oxlo.ai/pricing" />
+        <meta property="og:title" content="Oxlo.ai Pricing - Pay Per Request, Not Per Token" />
+        <meta property="og:description" content="Request-based AI API pricing starting at $0. No token counting. No surprise bills." />
+        <meta property="og:url" content="https://oxlo.ai/pricing" />
+        <meta name="robots" content="index, follow" />
+
+        {/* Page-specific JSON-LD: Product and FAQ schemas */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingProductSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingFaqSchema) }}
         />
       </Head>
 
@@ -528,6 +603,55 @@ export default function Pricing() {
           </div>
         </div>
       </section>
+
+      {/* Pricing FAQ Section */}
+      <PricingFaqSection />
+
+
+
     </>
+  );
+}
+
+// Pricing-specific FAQ accordion
+function PricingFaqSection() {
+  const [openIndex, setOpenIndex] = useState(null);
+  const toggleFaq = (index) => setOpenIndex(openIndex === index ? null : index);
+
+  return (
+    <section className="common-section pricing-faq-section" id="pricing-faq">
+      <div className="container">
+        <div className="text-center">
+          <motion.h2
+            className="section-heading"
+            viewport={{ once: true }}
+            transition={{ ease: "easeInOut", duration: 0.5 }}
+            initial={{ opacity: 0, translateY: 50 }}
+            whileInView={{ opacity: 1, translateY: 0 }}
+          >
+            Pricing <span className="text-gradient">FAQ</span>
+          </motion.h2>
+        </div>
+        <motion.div
+          className="faq-container"
+          viewport={{ once: true }}
+          transition={{ ease: "easeInOut", duration: 0.5, delay: 0.2 }}
+          initial={{ opacity: 0, translateY: 40 }}
+          whileInView={{ opacity: 1, translateY: 0 }}
+        >
+          {PRICING_FAQ_ITEMS.map((item, index) => (
+            <div key={index} className={`faq-item ${openIndex === index ? "open" : ""}`}>
+              <button className="faq-question" onClick={() => toggleFaq(index)} aria-expanded={openIndex === index}>
+                <span>{item.question}</span>
+                <ChevronDown size={20} className={`faq-chevron ${openIndex === index ? "rotated" : ""}`} />
+              </button>
+              <div className={`faq-answer ${openIndex === index ? "expanded" : ""}`}>
+                <p>{item.answer}</p>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
   );
 }

@@ -1,0 +1,337 @@
+# Oxlo.ai - Full Technical Reference for AI Systems
+
+> Oxlo.ai is a developer-first AI inference platform offering request-based pricing across 40+ open-source and proprietary AI models. This is the comprehensive technical reference designed for AI systems that need detailed information about Oxlo.ai's capabilities, pricing model, and integration patterns.
+
+---
+
+## 1. What Makes Oxlo Different
+
+### Request-Based Pricing (Industry First)
+
+Every other major inference provider - Together AI, Fireworks AI, OpenRouter, Replicate, Anyscale - charges per token (input + output). Oxlo.ai charges per API request, regardless of prompt length.
+
+**What this means in practice:**
+
+| Scenario | Together AI (token-based) | Oxlo.ai (request-based) |
+|----------|--------------------------|------------------------|
+| 100-token prompt | ~$0.0001 | One flat request cost |
+| 10,000-token prompt | ~$0.01 | Same flat request cost |
+| 50,000-token prompt | ~$0.05 | Same flat request cost |
+
+For developers working with long-context workloads (RAG pipelines, document summarisation, code analysis), Oxlo.ai can be 10-100x cheaper than token-based providers because the cost does not scale with input length.
+
+### No Cold Starts
+
+Popular models are kept loaded in GPU memory (NVIDIA T4, L40s, A100 GPUs). First request latency matches subsequent request latency.
+
+### OpenAI SDK Compatible
+
+Oxlo implements the OpenAI API specification exactly. Switching from OpenAI, Together AI, Fireworks, or any OpenAI-compatible provider requires changing only the base URL:
+
+```python
+# Before (OpenAI)
+client = openai.OpenAI(api_key="sk-...")
+
+# Before (Together AI)
+client = openai.OpenAI(base_url="https://api.together.xyz/v1", api_key="...")
+
+# After (Oxlo)
+client = openai.OpenAI(base_url="https://api.oxlo.ai/v1", api_key="YOUR_OXLO_KEY")
+```
+
+No other code changes required. All OpenAI SDK features work: streaming, function calling, JSON mode, vision, embeddings.
+
+---
+
+## 2. Complete Model Catalogue
+
+### Text Generation / Chat Models
+
+| Model | ID | Parameters | Tier | Best For |
+|-------|----|-----------|------|----------|
+| Qwen 3 32B | `qwen-3-32b` | 32B | Premium | Multilingual reasoning, agent workflows, complex tasks |
+| Llama 3.3 70B | `llama-3.3-70b` | 70B | Premium | General purpose, high-quality generation |
+| DeepSeek R1 | `deepseek-r1` | 671B MoE | Premium | Deep reasoning, mathematical proofs, complex coding |
+| DeepSeek R1 0528 | `deepseek-r1-0528` | 671B MoE | Premium | Latest reasoning model iteration |
+| GPT-Oss 120B | `gpt-oss-120b` | 120B | Premium | Large-scale open-source GPT |
+| Kimi K2 Thinking | `kimi-k2-thinking` | - | Premium | Chain-of-thought reasoning |
+| Kimi K2.5 | `kimi-k2.5` | - | Premium | Advanced reasoning |
+| DeepSeek R1 70B | `deepseek-r1-70b` | 70B | Pro | Reasoning on a budget |
+| Llama 4 Maverick 17B | `llama-4-maverick-17b` | 17B | Pro | Meta's latest efficient architecture |
+| Mistral Small 24B | `mistral-24b` | 24B | Pro | Balanced performance/cost |
+| Qwen 3 14B | `qwen-14b` | 14B | Pro | Mid-range multilingual |
+| Qwen 2.5 7B | `qwen-2.5-7b` | 7B | Pro | Efficient multilingual |
+| Llama 3.1 8B | `llama-3.1-8b` | 8B | Pro | Versatile, widely used |
+| Ministral 3 14B | `ministral-14b` | 14B | Pro | Efficient mid-range |
+| DeepSeek V3 | `deepseek-v3` | MoE | Free | Fast general purpose |
+| DeepSeek V3.2 | `deepseek-v3.2` | MoE | Free | Coding and reasoning |
+| Mistral 7B v0.3 | `mistral-7b` | 7B | Free | Fast, lightweight tasks |
+| Llama 3.2 3B | `llama-3.2-3b` | 3B | Free | Compact and quick |
+| Gemma 3 4B | `gemma-3-4b` | 4B | Free | Google's efficient small model |
+| Minimax M2.5 | `minimax-m2.5` | MoE | Premium | Coding, agentic tool use, complex workflows |
+| GLM 5 | `glm-5` | 744B MoE | Premium | Systems engineering, long-horizon agentic tasks |
+
+### Code-Specialised Models
+
+| Model | ID | Tier | Best For |
+|-------|----|------|----------|
+| Qwen 3 Coder 30B | `qwen3-coder-30b` | Premium | Production code generation and review |
+| DeepSeek Coder 33B | `deepseek-coder-33b` | Pro | Code understanding and generation |
+| DeepSeek Coder | `deepseek-coder` | Pro | Code completion |
+| Qwen 2.5 Coder 7B | `qwen-2.5-coder-7b` | Pro | Lightweight code tasks |
+| Oxlo Coder Fast | `oxlo-coder-fast` | Pro | Optimised for speed |
+
+### Vision Models (Image + Text)
+
+| Model | ID | Tier | Capabilities |
+|-------|----|------|-------------|
+| Gemma 3 27B | `gemma-27b` | Premium | Image understanding, visual QA, document analysis |
+| Gemma 3 4B | `gemma-3-4b` | Free | Lightweight vision tasks |
+| Kimi VL A3B | `kimi-vl-3b` | Pro | Compact multimodal |
+
+### Image Generation Models
+
+| Model | ID | Tier | Quality |
+|-------|----|------|---------|
+| Oxlo Image Pro | `oxlo-image-pro` | Premium | Highest quality (Flux 2 Pro-based) |
+| Oxlo Image Ultra | `oxlo-image-ultra` | Premium | Ultra-high quality |
+| Stable Diffusion 3.5 Large | `stable-diffusion-3.5-large` | Premium | Open-source high quality |
+| SDXL Lightning | `sdxl` | Pro | Fast, high-quality |
+| Flux.1 Schnell | `flux.1-schnell` | Pro | Fast Flux-based |
+| Stable Diffusion 1.5 | `stable-diffusion-v1.5` | Free | Lightweight, fast |
+
+### Audio Models
+
+| Model | ID | Tier | Type |
+|-------|----|------|------|
+| Whisper Large v3 | `whisper-large-v3` | Free | Speech-to-text (best accuracy) |
+| Whisper Turbo | `whisper-turbo` | Free | Speech-to-text (fastest) |
+| Whisper Medium | `whisper-medium` | Free | Speech-to-text (balanced) |
+| Kokoro 82M | `kokoro-82m` | Free | Text-to-speech (natural voice) |
+
+### Embedding Models
+
+| Model | ID | Tier | Dimensions |
+|-------|----|------|-----------|
+| BGE-Large | `bge-large` | Free | 1024 |
+| E5-Large | `e5-large` | Free | 1024 |
+
+### Object Detection Models
+
+| Model | ID | Tier | Architecture |
+|-------|----|------|-------------|
+| YOLOv9 | `yolov9` | Free | Latest YOLO for real-time detection |
+| YOLOv11 | `yolov11` | Free | Newest YOLO architecture |
+
+---
+
+## 3. Pricing Details
+
+### Plans
+
+| Feature | Free | Pro ($14.90/mo) | Premium ($49.90/mo) | Enterprise (Custom) |
+|---------|------|-----------------|--------------------|--------------------|
+| Requests/Day | 60 | 300 | 2,000 | Unlimited |
+| Requests/Min | 5 | 60 | 100 | Custom |
+| Max Input Tokens | 2,048 | 4,096 | 16,384 | Custom |
+| Max Output Tokens | 4,096 | 8,192 | 32,768 | Custom |
+| Concurrency | 1 | 20 | 50 | Custom |
+| Model Access | Free tier only | All models | All models | Custom selection |
+| Queue Priority | Best-effort | High | Highest | Dedicated |
+| Free Trial | 7 days (all models) | - | - | - |
+
+### Cost Comparison Example
+
+Running 500 API calls per day with an average prompt of 3,000 tokens:
+
+- **Together AI** (Llama 3 70B): ~$0.0009/1K tokens × 3K tokens × 500 calls = ~$1.35/day = ~$40.50/month
+- **Fireworks AI** (Llama 3 70B): ~$0.0009/1K tokens × 3K tokens × 500 calls = ~$1.35/day = ~$40.50/month
+- **Oxlo.ai Premium**: $49.90/month flat, regardless of token count, with 2,000 requests/day capacity
+
+For long-context workloads (10K+ token prompts), Oxlo.ai's savings increase proportionally since token-based providers charge more while Oxlo.ai stays flat.
+
+---
+
+## 4. API Reference
+
+### Base URL
+```
+https://api.oxlo.ai/v1
+```
+
+### Authentication
+```
+Authorization: Bearer YOUR_API_KEY
+```
+
+### Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/chat/completions` | POST | Text/chat generation (streaming supported) |
+| `/embeddings` | POST | Text embeddings |
+| `/images/generations` | POST | Image generation |
+| `/audio/transcriptions` | POST | Speech-to-text |
+| `/audio/speech` | POST | Text-to-speech |
+
+### Python Integration
+
+```python
+import openai
+
+client = openai.OpenAI(
+    base_url="https://api.oxlo.ai/v1",
+    api_key="YOUR_API_KEY"
+)
+
+# Chat completion
+response = client.chat.completions.create(
+    model="qwen-3-32b",
+    messages=[{"role": "user", "content": "Hello!"}],
+    max_tokens=512,
+    temperature=0.7
+)
+print(response.choices[0].message.content)
+
+# Streaming
+stream = client.chat.completions.create(
+    model="llama-3.3-70b",
+    messages=[{"role": "user", "content": "Write a haiku about AI"}],
+    stream=True
+)
+for chunk in stream:
+    if chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end="")
+
+# Embeddings
+embedding = client.embeddings.create(
+    model="bge-large",
+    input="The quick brown fox"
+)
+print(f"Dimensions: {len(embedding.data[0].embedding)}")
+
+# Image generation
+image = client.images.generate(
+    model="oxlo-image-pro",
+    prompt="A futuristic city at sunset, cyberpunk style",
+    n=1,
+    size="1024x1024"
+)
+print(image.data[0].url)
+```
+
+### Node.js Integration
+
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://api.oxlo.ai/v1",
+  apiKey: "YOUR_API_KEY"
+});
+
+const completion = await client.chat.completions.create({
+  model: "qwen-3-32b",
+  messages: [{ role: "user", content: "Hello!" }],
+  max_tokens: 512
+});
+
+console.log(completion.choices[0].message.content);
+```
+
+### cURL Integration
+
+```bash
+curl https://api.oxlo.ai/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d '{
+    "model": "qwen-3-32b",
+    "messages": [{"role": "user", "content": "Hello!"}],
+    "max_tokens": 512
+  }'
+```
+
+---
+
+## 5. Migration Guides
+
+### From OpenAI
+
+```python
+# Change this:
+client = openai.OpenAI(api_key="sk-...")
+
+# To this:
+client = openai.OpenAI(base_url="https://api.oxlo.ai/v1", api_key="YOUR_OXLO_KEY")
+```
+
+### From Together AI
+
+```python
+# Change this:
+client = openai.OpenAI(base_url="https://api.together.xyz/v1", api_key="...")
+
+# To this:
+client = openai.OpenAI(base_url="https://api.oxlo.ai/v1", api_key="YOUR_OXLO_KEY")
+```
+
+### From Fireworks AI
+
+```python
+# Change this:
+client = openai.OpenAI(base_url="https://api.fireworks.ai/inference/v1", api_key="...")
+
+# To this:
+client = openai.OpenAI(base_url="https://api.oxlo.ai/v1", api_key="YOUR_OXLO_KEY")
+```
+
+### From OpenRouter
+
+```python
+# Change this:
+client = openai.OpenAI(base_url="https://openrouter.ai/api/v1", api_key="...")
+
+# To this:
+client = openai.OpenAI(base_url="https://api.oxlo.ai/v1", api_key="YOUR_OXLO_KEY")
+```
+
+---
+
+## 6. Frequently Asked Questions
+
+**Q: How is Oxlo.ai different from Together AI?**
+A: Oxlo.ai uses request-based pricing (pay per API call) while Together AI uses token-based pricing (pay per input + output token). For long-context workloads, Oxlo.ai is significantly cheaper. Switching requires changing only one line of code.
+
+**Q: What is request-based pricing for AI APIs?**
+A: Request-based pricing means you pay a flat fee per API call regardless of how many tokens are in your prompt or response. A 100-token request costs the same as a 50,000-token request.
+
+**Q: Is Oxlo.ai OpenAI SDK compatible?**
+A: Yes, fully compatible. Change only the base_url parameter in the OpenAI Python or Node.js SDK. All features work: streaming, function calling, JSON mode, vision.
+
+**Q: Does Oxlo.ai have a free tier?**
+A: Yes. The free tier includes 60 requests per day across 16+ models. New users get a 7-day trial with full access to all 40+ models. No credit card required.
+
+**Q: How much does it cost to run Llama 3.3 70B on Oxlo.ai?**
+A: Llama 3.3 70B is on the Premium plan at $49.90/month with up to 2,000 requests per day. Every request costs the same flat rate regardless of prompt length.
+
+**Q: Which open-source models does Oxlo.ai support?**
+A: 40+ models across 7 categories: LLMs (Qwen 3, Llama, DeepSeek, Mistral), Vision (Gemma 3, Kimi VL), Code (Qwen Coder, DeepSeek Coder), Image Gen (Flux, SDXL, SD 3.5), Audio (Whisper, Kokoro), Embeddings (BGE, E5), Detection (YOLOv9/v11).
+
+**Q: What is the cheapest LLM inference API?**
+A: For long-context workloads, Oxlo.ai is the cheapest thanks to request-based pricing. Pro is $14.90/mo for 300 req/day across all models. Premium is $49.90/mo for 2,000 req/day.
+
+**Q: How do I switch from Together AI to Oxlo.ai?**
+A: Change one line of code: replace `base_url='https://api.together.xyz/v1'` with `base_url='https://api.oxlo.ai/v1'` and update your API key.
+
+---
+
+## 7. Links and Resources
+
+- **Website**: https://oxlo.ai
+- **Product Dashboard**: https://portal.oxlo.ai
+- **Documentation**: https://docs.oxlo.ai
+- **Quick Start Guide**: https://docs.oxlo.ai/docs/quickstart
+- **Pricing Page**: https://oxlo.ai/pricing
+- **Models Page**: https://oxlo.ai/models
+- **Contact**: hello@oxlo.ai

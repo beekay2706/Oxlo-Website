@@ -1,0 +1,68 @@
+# Oxlo.ai robots.txt - AI-crawler friendly
+# Landing page: oxlo.ai
+# Last updated: March 2026
+#
+# Policy: Allow all AI search and training crawlers for maximum
+# visibility in ChatGPT, Perplexity, Gemini, and Google AI Overviews.
+
+# ===================================================================
+# AI SEARCH CRAWLERS - These generate citations and referral traffic
+# ===================================================================
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# ===================================================================
+# AI TRAINING CRAWLERS - These train models on our content
+# Allowing for maximum discoverability and entity recognition.
+# ===================================================================
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Cohere-AI
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# ===================================================================
+# DEFAULT - Allow all other bots
+# ===================================================================
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://oxlo.ai/sitemap.xml
+
+# LLMs.txt - structured product overview for AI systems
+# See https://llmstxt.org for the specification
