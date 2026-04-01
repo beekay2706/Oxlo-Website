@@ -6,6 +6,27 @@ import Head from "next/head";
 import { motion } from "framer-motion";
 
 export default function Models() {
+
+// ItemList schema for AI entity discovery
+const modelsItemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Oxlo.ai AI Model Registry",
+  "description": "40+ open-source and proprietary AI models available via Oxlo.ai's request-based API. Includes LLMs, vision, code, image generation, audio, embeddings, and object detection models.",
+  "numberOfItems": 37,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Qwen 3 32B", "description": "State-of-the-art multilingual reasoning and agent tasks" },
+    { "@type": "ListItem", "position": 2, "name": "Llama 3.3 70B", "description": "Meta's flagship 70B parameter general-purpose LLM" },
+    { "@type": "ListItem", "position": 3, "name": "DeepSeek R1 671B", "description": "Deep reasoning and complex coding - full 671B MoE model" },
+    { "@type": "ListItem", "position": 4, "name": "Mistral 7B", "description": "Fast and efficient general-purpose language model" },
+    { "@type": "ListItem", "position": 5, "name": "Whisper Large v3", "description": "OpenAI's best speech-to-text transcription model" },
+    { "@type": "ListItem", "position": 6, "name": "Oxlo Image Pro", "description": "Premium Flux 2-based image generation" },
+    { "@type": "ListItem", "position": 7, "name": "BGE-Large", "description": "BAAI's top-performing text embedding model" },
+    { "@type": "ListItem", "position": 8, "name": "YOLOv9", "description": "State-of-the-art real-time object detection" },
+    { "@type": "ListItem", "position": 9, "name": "Kokoro 82M", "description": "Natural-sounding text-to-speech model" },
+    { "@type": "ListItem", "position": 10, "name": "DeepSeek Coder 33B", "description": "Specialized model for code generation and programming assistance" }
+  ]
+};
   
 const MODELS_DATA = [
   {
@@ -15,7 +36,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/mistral.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "llama-3-1-8b",
@@ -24,7 +45,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/meta.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "qwen-2-5-7b",
@@ -33,7 +54,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/jjj.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "sd-v1-5",
@@ -42,7 +63,7 @@ const MODELS_DATA = [
     tags: ["Image"],
     logo: "/images/models/sd.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "whisper-medium",
@@ -51,7 +72,7 @@ const MODELS_DATA = [
     tags: ["Audio", "Speech to Text"],
     logo: "/images/models/gpt.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "deepseek-coder-33b",
@@ -60,7 +81,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Code"],
     logo: "/images/models/deep.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "llama-3-3-70b",
@@ -69,7 +90,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/meta.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "sdxl",
@@ -78,7 +99,7 @@ const MODELS_DATA = [
     tags: ["Image"],
     logo: "/images/models/sd.png",
     trending: true,
-    commingSoon: true,
+    comingSoon: true,
   },
   {
     id: "yolov9",
@@ -87,7 +108,7 @@ const MODELS_DATA = [
     tags: ["Computer Vision"],
     logo: "/images/models/you.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "whisper-large",
@@ -96,7 +117,7 @@ const MODELS_DATA = [
     tags: ["Audio", "Speech to Text"],
     logo: "/images/models/gpt.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "whisper-large-v3",
@@ -105,7 +126,7 @@ const MODELS_DATA = [
     tags: ["Audio", "Speech to Text"],
     logo: "/images/models/gpt.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "qwen-3-32b",
@@ -114,7 +135,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/jjj.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "gpt-oss-20b",
@@ -123,7 +144,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text", "Code"],
     logo: "/images/models/gpt.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "gpt-oss-120b",
@@ -132,7 +153,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text", "Code"],
     logo: "/images/models/gpt.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "deepseek-r1-70b",
@@ -141,7 +162,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning"],
     logo: "/images/models/deep.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "deepseek-r1-8b",
@@ -150,7 +171,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning"],
     logo: "/images/models/deep.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "kimi-k2thinking",
@@ -159,7 +180,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/moon.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "bge-large",
@@ -168,7 +189,7 @@ const MODELS_DATA = [
     tags: ["Embeddings"],
     logo: "/images/models/baai.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "e5-large",
@@ -177,7 +198,7 @@ const MODELS_DATA = [
     tags: ["Embeddings"],
     logo: "/images/models/dot.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "llama-3-2-3b",
@@ -186,7 +207,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/meta.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "yolov11",
@@ -195,7 +216,7 @@ const MODELS_DATA = [
     tags: ["Computer Vision"],
     logo: "/images/models/you.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "flux-1-schnell",
@@ -204,7 +225,7 @@ const MODELS_DATA = [
     tags: ["Image"],
     logo: "/images/models/arc.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "oxlo-image-pro",
@@ -213,7 +234,7 @@ const MODELS_DATA = [
     tags: ["Image"],
     logo: "/images/models/oxlo.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "kokoro-82m",
@@ -222,7 +243,7 @@ const MODELS_DATA = [
     tags: ["Audio", "Text to Speech"],
     logo: "/images/models/danger.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "oxlo-image-ultra",
@@ -231,7 +252,7 @@ const MODELS_DATA = [
     tags: ["Image"],
     logo: "/images/models/oxlo.png",
     trending: false,
-    commingSoon: true,
+    comingSoon: true,
   },
   {
     id: "oxlo-coder-fast",
@@ -240,7 +261,7 @@ const MODELS_DATA = [
     tags: ["LLM","Code"],
     logo: "/images/models/oxlo.png",
     trending: false,
-    commingSoon: true,
+    comingSoon: true,
   },
   {
     id: "deepseek-v3-2",
@@ -249,7 +270,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning", "Code"],
     logo: "/images/models/deep.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "llama-4-maverick-17B",
@@ -258,7 +279,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning", "Chat"],
     logo: "/images/models/meta.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "deepseek-V3-0324",
@@ -267,7 +288,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning", "Chat"],
     logo: "/images/models/deep.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "kimi-k2-5",
@@ -276,7 +297,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text", "Long Context"],
     logo: "/images/models/moon.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "deepseek-r1-0528",
@@ -285,7 +306,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning", "Code"],
     logo: "/images/models/deep.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "ministral-3-14b-instruct",
@@ -294,7 +315,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning", "Chat"],
     logo: "/images/models/mistral.png",
     trending: false,
-    commingSoon: true,
+    comingSoon: false,
   },
   {
     id: "qwen-3-coder",
@@ -303,7 +324,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Code"],
     logo: "/images/models/jjj.png",
     trending: false,
-    commingSoon: true,
+    comingSoon: false,
   },
   {
     id: "gemma-27b",
@@ -312,7 +333,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/google.png",
     trending: false,    
-    commingSoon: true,
+    comingSoon: false,
   },
   {
     id: "gemma-3-4b",
@@ -321,7 +342,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/google.png",
     trending: false,    
-    commingSoon: true,
+    comingSoon: false,
   },
   {
     id: "falcom-7b",
@@ -330,7 +351,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/falcon.png",
     trending: false,    
-    commingSoon: true,
+    comingSoon: true,
   },
   {
     id: "qwen-2-5-coder-7b",
@@ -339,7 +360,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Code"],
     logo: "/images/models/jjj.png",
     trending: false,    
-    commingSoon: true,
+    comingSoon: true,
   },
   {
     id: "falcom-11b",
@@ -348,7 +369,25 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/falcon.png",
     trending: false,
-    commingSoon: true,
+    comingSoon: true,
+  },
+  {
+    id: "minimax-m2-5",
+    title: "Minimax M2.5",
+    description: "Mixture-of-Experts model optimized for coding, agentic tool use, complex workflows, and office productivity tasks.",
+    tags: ["LLM", "Code", "Reasoning"],
+    logo: "/images/models/minimax.png",
+    trending: false,
+    comingSoon: false,
+  },
+  {
+    id: "glm-5",
+    title: "GLM 5",
+    description: "744B parameter MoE model built for complex systems engineering, long-horizon agentic tasks, and advanced reasoning.",
+    tags: ["LLM", "Reasoning", "Code"],
+    logo: "/images/models/zhipu.png",
+    trending: false,
+    comingSoon: false,
   },
   
 ]
@@ -390,16 +429,43 @@ const [searchQuery, setSearchQuery] = useState("")
       const matchesTags = selectedTags.length === 0 || selectedTags.every((tag) => model.tags.includes(tag))
 
       return matchesSearch && matchesTags
+    }).sort((a, b) => {
+      if (a.comingSoon === b.comingSoon) return 0;
+      return a.comingSoon ? 1 : -1;
     })
   }, [searchQuery, selectedTags])
+
+
+  const getButtonText = (tags) => {
+    const hasTag = (tagList) => tags.some(t => tagList.includes(t));
+    if (hasTag(['Computer Vision'])) return 'Connect';
+    if (hasTag(['Image', 'Audio', 'Speech to Text', 'Text to Speech'])) return 'Generate';
+    if (hasTag(['LLM', 'Text', 'Chat', 'Reasoning', 'Code'])) return 'Chat now';
+    return 'Deploy';
+  }
 
   return (
     <>
       <Head>
-        <title>Models</title>
+        <title>AI Models - 40+ Open-Source Models for Inference | Oxlo.ai</title>
         <meta
           name="description"
-          content="Model Registry - Choose an open-source model and deploy it in seconds."
+          content="Browse 40+ AI models available on Oxlo.ai: Qwen 3 32B, Llama 3.3 70B, DeepSeek R1, Mistral 7B, Whisper, SDXL, YOLOv9, BGE-Large, and more. Deploy any model in seconds with request-based pricing."
+        />
+        <meta
+          name="keywords"
+          content="AI models, open-source LLM, Qwen 3 32B, Llama 3.3 70B, DeepSeek R1, Mistral 7B, Whisper API, SDXL API, BGE embedding, YOLOv9 API, AI model registry"
+        />
+        <link rel="canonical" href="https://oxlo.ai/models" />
+        <meta property="og:title" content="40+ AI Models for Inference - Oxlo.ai Model Registry" />
+        <meta property="og:description" content="Deploy Qwen 3 32B, Llama 3.3 70B, DeepSeek R1, and 40+ more models in seconds." />
+        <meta property="og:url" content="https://oxlo.ai/models" />
+        <meta name="robots" content="index, follow" />
+
+        {/* Page-specific JSON-LD: ItemList schema for model discovery */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(modelsItemListSchema) }}
         />
       </Head>
 
@@ -429,6 +495,9 @@ const [searchQuery, setSearchQuery] = useState("")
                 </p>
               </motion.div>
             </motion.div>
+
+
+
             <motion.div
               viewport={{ once: true }}
               transition={{
@@ -527,10 +596,10 @@ const [searchQuery, setSearchQuery] = useState("")
                         )
                       })}
                     </div>
-                    {!model.commingSoon ? (
-                      <a href="https://portal.oxlo.ai/admin/models" className="deploy-btn">Deploy <MoveRight size={15} /></a>
+                    {!model.comingSoon ? (
+                      <a href="https://portal.oxlo.ai/admin/models" className="deploy-btn">{getButtonText(model.tags)} <MoveRight size={15} /></a>
                     ) : (
-                      <a href="" className="deploy-btn comming-soon">Comming Soon</a>
+                      <a href="" className="deploy-btn coming-soon">Coming Soon</a>
                     )}
                   </div>
                 </div>
@@ -539,6 +608,9 @@ const [searchQuery, setSearchQuery] = useState("")
           </motion.div>
         </div>
       </section>
+
+
+
     </>
   );
 }

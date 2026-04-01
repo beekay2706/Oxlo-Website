@@ -1,7 +1,9 @@
+import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from 'next/link'
 import Button from "@/components/Button";
+import FaqSection from "@/components/FaqSection";
 import rocket from "../../public/images/rocket.svg";
 import rocketColored from "../../public/images/rocketColored.svg";
 import hero from "../../public/images/hero-animation.gif";
@@ -25,6 +27,92 @@ import together from '../../public/images/together.svg'
 import f6s from '../../public/images/f6s.png'
 import STL from '../../public/images/STL.webp'
 import TopProd from '../../public/images/badge.png'
+
+// Page-specific FAQ schema (matches visible FaqSection component content)
+const homepageFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is Oxlo.ai different from Together AI, Fireworks AI, and OpenRouter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oxlo.ai is the only major inference provider that uses request-based pricing - you pay a flat fee per API call regardless of prompt length. Together AI, Fireworks AI, OpenRouter, and Replicate all charge per token (input + output), which means costs scale with prompt size. For long-context workloads like RAG pipelines or document analysis, Oxlo.ai can be 10 to 100 times cheaper. All platforms support similar open-source models, but Oxlo.ai eliminates variable billing entirely."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is request-based pricing for AI APIs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Request-based pricing means you pay a flat fee per API call regardless of how many tokens are in your prompt or response. A 100-token request costs the same as a 50,000-token request. This is different from token-based pricing used by OpenAI, Together AI, Fireworks AI, OpenRouter, and Replicate, where costs scale linearly with input and output tokens. Oxlo.ai is the first major inference provider to offer request-based pricing, making costs completely predictable for developers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Oxlo.ai OpenAI SDK compatible?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Oxlo.ai is fully compatible with the OpenAI Python and Node.js SDKs. To switch from OpenAI, Together AI, Fireworks AI, or OpenRouter, you only need to change the base_url parameter to https://api.oxlo.ai/v1. All features work including streaming, function calling, JSON mode, vision models, embeddings, and image generation. No other code changes are required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I switch from other providers to Oxlo.ai?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Switching from any OpenAI-compatible provider to Oxlo.ai requires changing only one line of code. Replace your current base_url (e.g. api.together.xyz/v1, api.fireworks.ai/inference/v1, or openrouter.ai/api/v1) with https://api.oxlo.ai/v1 and update your API key. All other code stays identical. Sign up at oxlo.ai, generate an API key, and you are ready."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to run Llama 3.3 70B or Qwen 3 32B on Oxlo.ai?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both Llama 3.3 70B and Qwen 3 32B are available on Oxlo.ai's Premium plan at $49.90 per month, which includes up to 2,000 API requests per day. Unlike Together AI, Fireworks AI, or OpenRouter where a single long-context query can cost $0.05 or more depending on token count, every request on Oxlo.ai costs the same flat rate regardless of prompt length. New users get a 7-day free trial with full access to all premium models."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Oxlo.ai have a free tier?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Oxlo.ai offers a generous free tier with 60 requests per day across 16 or more models including DeepSeek V3, Mistral 7B, Gemma 3 4B, Whisper (speech-to-text), Kokoro (text-to-speech), BGE-Large and E5-Large (embeddings), and YOLOv9/v11 (object detection). New users also get a 7-day premium trial with full access to all 40+ models. No credit card required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which open-source models does Oxlo.ai support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oxlo.ai supports over 40 models across 7 categories. For text and chat: Qwen 3 32B, Llama 3.3 70B, DeepSeek R1 671B, DeepSeek V3, Mistral 7B, Gemma 3, Llama 4 Maverick, and more. For code: Qwen 3 Coder 30B, DeepSeek Coder 33B. For vision: Gemma 3 27B, Kimi VL. For images: Oxlo Image Pro (Flux 2), SDXL, Stable Diffusion 3.5 Large. For audio: Whisper Large v3, Whisper Turbo, Kokoro 82M TTS. For embeddings: BGE-Large, E5-Large. For detection: YOLOv9, YOLOv11."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the cheapest LLM inference API in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For long-context workloads, Oxlo.ai is the cheapest LLM inference API thanks to its unique request-based pricing model. While providers like Together AI, Fireworks AI, OpenRouter, and Replicate charge per token ($0.0002 to $0.003 per 1K tokens depending on model size), Oxlo.ai charges a flat rate per API request regardless of prompt length. The Pro plan costs $14.90 per month for 300 requests per day across all models, and Premium costs $49.90 per month for 2,000 requests per day."
+      }
+    }
+  ]
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Get Started with Oxlo.ai API",
+  "description": "Set up your first AI API call with Oxlo.ai in under 2 minutes. Works with any OpenAI-compatible SDK.",
+  "totalTime": "PT2M",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Create an Oxlo.ai Account", "text": "Sign up at https://portal.oxlo.ai/signup. No credit card required. You get a 7-day free trial with access to all 40+ models.", "url": "https://portal.oxlo.ai/signup" },
+    { "@type": "HowToStep", "position": 2, "name": "Generate an API Key", "text": "Go to Dashboard > API Keys and create a new API key. Copy the key for the next step.", "url": "https://portal.oxlo.ai/dashboard/api-keys" },
+    { "@type": "HowToStep", "position": 3, "name": "Install the OpenAI SDK", "text": "Install the OpenAI Python SDK with: pip install openai. Or for Node.js: npm install openai. Oxlo is fully OpenAI SDK compatible." },
+    { "@type": "HowToStep", "position": 4, "name": "Make Your First API Call", "text": "Create an OpenAI client with base_url='https://api.oxlo.ai/v1' and your API key. Call client.chat.completions.create() with any supported model like 'qwen-3-32b' or 'mistral-7b'." }
+  ]
+};
 
 export default function Home() {
 
@@ -56,10 +144,40 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>Oxlo.ai - AI Inference API with Request-Based Pricing | 40+ Models</title>
         <meta
           name="description"
-          content="A developer-first AI Inference platform with radically lower compute costs."
+          content="Developer-first AI inference platform with request-based pricing. Run 40+ open-source models (Qwen 3 32B, Llama 3.3 70B, DeepSeek R1, Mistral, Whisper, SDXL) via OpenAI-compatible API. Pay per request, not per token. Free tier available."
+        />
+        <meta
+          name="keywords"
+          content="AI inference API, LLM API, request-based pricing, Together AI alternative, Fireworks AI alternative, OpenRouter alternative, cheapest LLM API, Qwen 3 32B API, Llama 3.3 70B API, DeepSeek R1 API, OpenAI SDK compatible, open-source AI models, GPU inference"
+        />
+        <link rel="canonical" href="https://oxlo.ai" />
+
+        {/* OpenGraph */}
+        <meta property="og:title" content="Oxlo.ai - AI Inference API with Request-Based Pricing" />
+        <meta property="og:description" content="Run 40+ AI models via OpenAI-compatible API. Pay per request, not per token. Free tier available." />
+        <meta property="og:url" content="https://oxlo.ai" />
+        <meta property="og:site_name" content="Oxlo.ai" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Oxlo.ai - AI Inference API with Request-Based Pricing" />
+        <meta name="twitter:description" content="Run 40+ AI models via OpenAI-compatible API. Pay per request, not per token." />
+
+        {/* Robots */}
+        <meta name="robots" content="index, follow" />
+
+        {/* Page-specific JSON-LD: FAQ and HowTo schemas */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageFaqSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
         />
       </Head>
 
@@ -306,6 +424,9 @@ export default function Home() {
         </div>
       </section> 
 
+      {/* Visible FAQ Section — matches JSON-LD FAQPage schema for GEO/AEO */}
+      <FaqSection />
+
       <section className="common-section newsletter-section">
         <div className="container">
           <div className="ns-wrap">
@@ -346,6 +467,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+
+
     </>
   );
 }
