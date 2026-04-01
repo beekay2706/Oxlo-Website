@@ -36,7 +36,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/mistral.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "llama-3-1-8b",
@@ -45,7 +45,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/meta.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "qwen-2-5-7b",
@@ -54,7 +54,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/jjj.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "sd-v1-5",
@@ -63,7 +63,7 @@ const MODELS_DATA = [
     tags: ["Image"],
     logo: "/images/models/sd.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "whisper-medium",
@@ -72,7 +72,7 @@ const MODELS_DATA = [
     tags: ["Audio", "Speech to Text"],
     logo: "/images/models/gpt.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "deepseek-coder-33b",
@@ -81,7 +81,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Code"],
     logo: "/images/models/deep.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "llama-3-3-70b",
@@ -90,7 +90,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/meta.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "sdxl",
@@ -99,7 +99,7 @@ const MODELS_DATA = [
     tags: ["Image"],
     logo: "/images/models/sd.png",
     trending: true,
-    commingSoon: true,
+    comingSoon: true,
   },
   {
     id: "yolov9",
@@ -108,7 +108,7 @@ const MODELS_DATA = [
     tags: ["Computer Vision"],
     logo: "/images/models/you.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "whisper-large",
@@ -117,7 +117,7 @@ const MODELS_DATA = [
     tags: ["Audio", "Speech to Text"],
     logo: "/images/models/gpt.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "whisper-large-v3",
@@ -126,7 +126,7 @@ const MODELS_DATA = [
     tags: ["Audio", "Speech to Text"],
     logo: "/images/models/gpt.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "qwen-3-32b",
@@ -135,7 +135,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/jjj.png",
     trending: true,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "gpt-oss-20b",
@@ -144,7 +144,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text", "Code"],
     logo: "/images/models/gpt.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "gpt-oss-120b",
@@ -153,7 +153,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text", "Code"],
     logo: "/images/models/gpt.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "deepseek-r1-70b",
@@ -162,7 +162,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning"],
     logo: "/images/models/deep.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "deepseek-r1-8b",
@@ -171,7 +171,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning"],
     logo: "/images/models/deep.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "kimi-k2thinking",
@@ -180,7 +180,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/moon.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "bge-large",
@@ -189,7 +189,7 @@ const MODELS_DATA = [
     tags: ["Embeddings"],
     logo: "/images/models/baai.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "e5-large",
@@ -198,7 +198,7 @@ const MODELS_DATA = [
     tags: ["Embeddings"],
     logo: "/images/models/dot.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "llama-3-2-3b",
@@ -207,7 +207,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/meta.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "yolov11",
@@ -216,7 +216,7 @@ const MODELS_DATA = [
     tags: ["Computer Vision"],
     logo: "/images/models/you.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "flux-1-schnell",
@@ -225,7 +225,7 @@ const MODELS_DATA = [
     tags: ["Image"],
     logo: "/images/models/arc.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "oxlo-image-pro",
@@ -234,7 +234,7 @@ const MODELS_DATA = [
     tags: ["Image"],
     logo: "/images/models/oxlo.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "kokoro-82m",
@@ -243,7 +243,7 @@ const MODELS_DATA = [
     tags: ["Audio", "Text to Speech"],
     logo: "/images/models/danger.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "oxlo-image-ultra",
@@ -252,7 +252,7 @@ const MODELS_DATA = [
     tags: ["Image"],
     logo: "/images/models/oxlo.png",
     trending: false,
-    commingSoon: true,
+    comingSoon: true,
   },
   {
     id: "oxlo-coder-fast",
@@ -261,7 +261,7 @@ const MODELS_DATA = [
     tags: ["LLM","Code"],
     logo: "/images/models/oxlo.png",
     trending: false,
-    commingSoon: true,
+    comingSoon: true,
   },
   {
     id: "deepseek-v3-2",
@@ -270,7 +270,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning", "Code"],
     logo: "/images/models/deep.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "llama-4-maverick-17B",
@@ -279,7 +279,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning", "Chat"],
     logo: "/images/models/meta.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "deepseek-V3-0324",
@@ -288,7 +288,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning", "Chat"],
     logo: "/images/models/deep.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "kimi-k2-5",
@@ -297,7 +297,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text", "Long Context"],
     logo: "/images/models/moon.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "deepseek-r1-0528",
@@ -306,7 +306,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning", "Code"],
     logo: "/images/models/deep.png",
     trending: false,
-    commingSoon: false,
+    comingSoon: false,
   },
   {
     id: "ministral-3-14b-instruct",
@@ -315,7 +315,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning", "Chat"],
     logo: "/images/models/mistral.png",
     trending: false,
-    commingSoon: true,
+    comingSoon: false,
   },
   {
     id: "qwen-3-coder",
@@ -324,7 +324,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Code"],
     logo: "/images/models/jjj.png",
     trending: false,
-    commingSoon: true,
+    comingSoon: false,
   },
   {
     id: "gemma-27b",
@@ -333,7 +333,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/google.png",
     trending: false,    
-    commingSoon: true,
+    comingSoon: false,
   },
   {
     id: "gemma-3-4b",
@@ -342,7 +342,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/google.png",
     trending: false,    
-    commingSoon: true,
+    comingSoon: false,
   },
   {
     id: "falcom-7b",
@@ -351,7 +351,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/falcon.png",
     trending: false,    
-    commingSoon: true,
+    comingSoon: true,
   },
   {
     id: "qwen-2-5-coder-7b",
@@ -360,7 +360,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Code"],
     logo: "/images/models/jjj.png",
     trending: false,    
-    commingSoon: true,
+    comingSoon: true,
   },
   {
     id: "falcom-11b",
@@ -369,7 +369,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Text"],
     logo: "/images/models/falcon.png",
     trending: false,
-    commingSoon: true,
+    comingSoon: true,
   },
   {
     id: "minimax-m2-5",
@@ -378,7 +378,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Code", "Reasoning"],
     logo: "/images/models/minimax.png",
     trending: false,
-    commingSoon: true,
+    comingSoon: false,
   },
   {
     id: "glm-5",
@@ -387,7 +387,7 @@ const MODELS_DATA = [
     tags: ["LLM", "Reasoning", "Code"],
     logo: "/images/models/zhipu.png",
     trending: false,
-    commingSoon: true,
+    comingSoon: false,
   },
   
 ]
@@ -429,8 +429,20 @@ const [searchQuery, setSearchQuery] = useState("")
       const matchesTags = selectedTags.length === 0 || selectedTags.every((tag) => model.tags.includes(tag))
 
       return matchesSearch && matchesTags
+    }).sort((a, b) => {
+      if (a.comingSoon === b.comingSoon) return 0;
+      return a.comingSoon ? 1 : -1;
     })
   }, [searchQuery, selectedTags])
+
+
+  const getButtonText = (tags) => {
+    const hasTag = (tagList) => tags.some(t => tagList.includes(t));
+    if (hasTag(['Computer Vision'])) return 'Connect';
+    if (hasTag(['Image', 'Audio', 'Speech to Text', 'Text to Speech'])) return 'Generate';
+    if (hasTag(['LLM', 'Text', 'Chat', 'Reasoning', 'Code'])) return 'Chat now';
+    return 'Deploy';
+  }
 
   return (
     <>
@@ -584,10 +596,10 @@ const [searchQuery, setSearchQuery] = useState("")
                         )
                       })}
                     </div>
-                    {!model.commingSoon ? (
-                      <a href="https://portal.oxlo.ai/admin/models" className="deploy-btn">Deploy <MoveRight size={15} /></a>
+                    {!model.comingSoon ? (
+                      <a href="https://portal.oxlo.ai/admin/models" className="deploy-btn">{getButtonText(model.tags)} <MoveRight size={15} /></a>
                     ) : (
-                      <a href="" className="deploy-btn comming-soon">Comming Soon</a>
+                      <a href="" className="deploy-btn coming-soon">Coming Soon</a>
                     )}
                   </div>
                 </div>

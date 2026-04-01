@@ -3329,6 +3329,8 @@ filter: blur(75px);
   display: flex;
   gap: 6px 12px;
   flex-wrap: wrap;
+  max-width: 155px; /* Safest max width to guarantee 3rd tag breaks line */
+  width: 100%;
 }
 
 .card-tag {
@@ -3361,7 +3363,7 @@ filter: blur(75px);
   background: var(--bg-btn-hover);
 }
 
-.deploy-btn.comming-soon {
+.deploy-btn.coming-soon {
   background: var(--bg-btn);
   opacity: 0.5;
   cursor: not-allowed;
