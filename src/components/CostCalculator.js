@@ -167,7 +167,7 @@ const FEATURE_TABLE = [
 // ═══════════════════════════════════════════════════════════════════════════
 const CITATION_SOURCES = [
   {
-    provider: 'Oxlo.ai',
+    provider: 'oxlo.ai',
     url: 'https://www.oxlo.ai/pricing',
     lastVerified: 'oxlo.ai/pricing — verified Apr 2026',
     dataQuality: 'AUTHORITATIVE',
@@ -235,10 +235,10 @@ const CITATION_SOURCES = [
       'Fireworks prices cross-referenced with artificialanalysis.ai benchmarking data and AgentOps tokencost table.',
       'Together prices verified from openrouter.ai provider listings and the pricepertoken.com comparison tool.',
       'Competitor monthly cost formula: (reqPerDay × 30 × inputTokens / 1,000,000 × inputRate) + (reqPerDay × 30 × outputTokens / 1,000,000 × outputRate)',
-      'Oxlo costs are flat monthly fees. They do NOT scale with token count. That is the entire point.',
+      'oxlo.ai costs are flat monthly fees. They do NOT scale with token count. That is the entire point.',
       'Prices change frequently. Verify at source before purchase decisions.',
-      'OpenRouter has a free tier (rate-limited, queued). Oxlo Free gives 60 req/day with full access to all 6 flagship models.',
-      'Break-even point: at 300 req/day with 2k input tokens, Oxlo Pro ($14.90) beats every token-based competitor on every model.',
+      'OpenRouter has a free tier (rate-limited, queued). oxlo.ai Free gives 60 req/day with full access to all 6 flagship models.',
+      'Break-even point: at 300 req/day with 2k input tokens, oxlo.ai Pro ($14.90) beats every token-based competitor on every model.',
     ],
   },
 ];
@@ -261,6 +261,8 @@ function Slider({ label, value, min, max, step, onChange, display }) {
         }}>{display}</span>
       </div>
       <input type="range" min={min} max={max} step={step} value={value}
+        aria-label={label}
+        aria-valuemin={min} aria-valuemax={max} aria-valuenow={value} aria-valuetext={display}
         onChange={e => onChange(Number(e.target.value))}
         style={{ width: '100%', accentColor: '#03F7B5', cursor: 'pointer', height: '4px' }} />
       <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', color: '#374151' }}>
@@ -274,7 +276,7 @@ function Slider({ label, value, min, max, step, onChange, display }) {
 function BarChart({ model, reqPerDay, inputTokens, outputTokens, oxloCost }) {
   const competitors = COMPETITOR_PRICING[model.id];
   const bars = [
-    { label: 'Oxlo (flat)', cost: oxloCost, color: '#03F7B5', isOxlo: true },
+    { label: 'oxlo.ai (flat)', cost: oxloCost, color: '#03F7B5', isOxlo: true },
     { label: 'OpenRouter', cost: calcMonthlyCost(reqPerDay, inputTokens, outputTokens, competitors.openrouter.input, competitors.openrouter.output), color: '#6366F1' },
     { label: 'Fireworks AI', cost: calcMonthlyCost(reqPerDay, inputTokens, outputTokens, competitors.fireworks.input, competitors.fireworks.output), color: '#F97316' },
     { label: 'Together AI', cost: calcMonthlyCost(reqPerDay, inputTokens, outputTokens, competitors.together.input, competitors.together.output), color: '#8B5CF6' },
@@ -327,12 +329,19 @@ function BarChart({ model, reqPerDay, inputTokens, outputTokens, oxloCost }) {
 // ─── MODEL CARD ─────────────────────────────────────────────────────────
 function ModelCard({ model, isSelected, onClick }) {
   return (
-    <div onClick={() => onClick(model.id)} style={{
-      padding: '12px 14px', borderRadius: '10px', cursor: 'pointer',
-      background: isSelected ? `${model.color}12` : 'rgba(255,255,255,0.02)',
-      border: isSelected ? `1px solid ${model.color}55` : '1px solid rgba(255,255,255,0.06)',
-      transition: 'all 0.15s ease',
-    }}>
+    <div
+      role="radio"
+      aria-checked={isSelected}
+      aria-label={`Select ${model.name} (${model.maker}, ${model.params}) for cost comparison`}
+      tabIndex={0}
+      onClick={() => onClick(model.id)}
+      onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && onClick(model.id)}
+      style={{
+        padding: '12px 14px', borderRadius: '10px', cursor: 'pointer',
+        background: isSelected ? `${model.color}12` : 'rgba(255,255,255,0.02)',
+        border: isSelected ? `1px solid ${model.color}55` : '1px solid rgba(255,255,255,0.06)',
+        transition: 'all 0.15s ease',
+      }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px', marginBottom: '4px', lineHeight: 1 }}>
         <div style={{ fontSize: '12px', fontWeight: 700, color: isSelected ? model.color : '#D1D5DB', lineHeight: 1 }}>
           {model.name}
@@ -450,14 +459,16 @@ function SavingsHeatmap({ reqPerDay, inputTokens, outputTokens }) {
 
   return (
     <div style={{ overflowX: 'auto' }}>
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11px', minWidth: '500px' }}>
+      <table
+        aria-label="Monthly cost comparison: oxlo.ai flat pricing vs token-based competitors across all 6 flagship models"
+        style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11px', minWidth: '500px' }}>
         <thead>
           <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-            <th style={{ padding: '10px 12px', textAlign: 'left', color: '#6B7280', fontWeight: 600 }}>Model</th>
-            <th style={{ padding: '10px 12px', textAlign: 'center', color: '#03F7B5', fontWeight: 700 }}>Oxlo ({plan.name})</th>
-            <th style={{ padding: '10px 12px', textAlign: 'center', color: '#6366F1', fontWeight: 600 }}>OpenRouter</th>
-            <th style={{ padding: '10px 12px', textAlign: 'center', color: '#F97316', fontWeight: 600 }}>Fireworks</th>
-            <th style={{ padding: '10px 12px', textAlign: 'center', color: '#8B5CF6', fontWeight: 600 }}>Together</th>
+            <th scope="col" style={{ padding: '10px 12px', textAlign: 'left', color: '#6B7280', fontWeight: 600 }}>Model</th>
+            <th scope="col" style={{ padding: '10px 12px', textAlign: 'center', color: '#03F7B5', fontWeight: 700 }}>oxlo.ai ({plan.name})</th>
+            <th scope="col" style={{ padding: '10px 12px', textAlign: 'center', color: '#6366F1', fontWeight: 600 }}>OpenRouter</th>
+            <th scope="col" style={{ padding: '10px 12px', textAlign: 'center', color: '#F97316', fontWeight: 600 }}>Fireworks</th>
+            <th scope="col" style={{ padding: '10px 12px', textAlign: 'center', color: '#8B5CF6', fontWeight: 600 }}>Together</th>
           </tr>
         </thead>
         <tbody>
@@ -483,7 +494,7 @@ function SavingsHeatmap({ reqPerDay, inputTokens, outputTokens }) {
                   return (
                     <td key={j} style={{ padding: '9px 12px', textAlign: 'center' }}>
                       <div style={{ fontFamily: 'monospace', color: '#D1D5DB', fontSize: '11px' }}>{fmtUSD(cost)}</div>
-                      {s > 0.5 && <div style={{ fontSize: '9px', color: '#03F7B5', fontWeight: 700 }}>-{pct}% vs Oxlo</div>}
+                      {s > 0.5 && <div style={{ fontSize: '9px', color: '#03F7B5', fontWeight: 700 }}>-{pct}% vs oxlo.ai</div>}
                     </td>
                   );
                 })}
@@ -528,7 +539,7 @@ export default function OxloDashboard() {
     { id: 'dashboard', label: 'Dashboard' },
     { id: 'models', label: 'Flagship Models' },
     { id: 'plans', label: 'Plans' },
-    { id: 'usp', label: 'Why Oxlo' },
+    { id: 'usp', label: 'Why oxlo.ai' },
     { id: 'sources', label: 'Sources & Citations' },
   ];
 
@@ -541,54 +552,107 @@ export default function OxloDashboard() {
     maxWidth: '980px',
     margin: '0 auto',
     color: '#fff',
+    display: 'block',       /* guarantee block formatting context */
+  };
+
+  // ── JSON-LD structured data for AEO / GEO / LLM crawlers ───────────────
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    'name': 'oxlo.ai API Pricing Calculator',
+    'applicationCategory': 'DeveloperApplication',
+    'operatingSystem': 'Web',
+    'url': 'https://www.oxlo.ai/pricing',
+    'description': 'oxlo.ai is a developer-first AI inference platform offering flat-rate, request-based billing for 6 flagship open-source models including Llama 3.3 70B, Kimi K2.5, GPT-OSS 120B, DeepSeek R1 0528, MiniMax M2.5, and GLM-5. Unlike token-based competitors (OpenRouter, Fireworks AI, Together AI), oxlo.ai charges a fixed monthly fee regardless of token consumption.',
+    'offers': [
+      { '@type': 'Offer', 'name': 'Free', 'price': '0', 'priceCurrency': 'USD', 'description': '60 req/day, 5 req/min burst, ≤7s latency, 2k input / 512 output tokens per request, no credit card required' },
+      { '@type': 'Offer', 'name': 'Pro', 'price': '14.90', 'priceCurrency': 'USD', 'description': '300 req/day, 30 req/min burst, ≤1s latency, 4k input / 1k output tokens per request, 7-day free trial' },
+      { '@type': 'Offer', 'name': 'Premium', 'price': '49.90', 'priceCurrency': 'USD', 'description': '2000 req/day, 120 req/min burst, ≤100ms latency, 16k input / 4k output tokens per request, priority GPU execution, 7-day free trial' },
+      { '@type': 'Offer', 'name': 'Enterprise', 'price': 'Custom', 'priceCurrency': 'USD', 'description': 'Dedicated GPU capacity, custom rate limits, SLA-backed throughput, dedicated support channel' },
+    ],
+    'featureList': [
+      'Flat monthly request-based billing — no per-token charges',
+      'All 6 flagship OSS models included on every plan',
+      'OpenAI-compatible API endpoints (drop-in SDK replacement)',
+      'DeepSeek R1 0528: 671B total params (37B active), 163k context, o1-class reasoning',
+      'MiniMax M2.5: 80.2% SWE-Bench Verified, 456B/10B active, 196k context',
+      'Kimi K2.5: 1T parameter MoE, 32B active, 262k context, native multimodal',
+      'GPT-OSS 120B: Apache 2.0, 94.2% MMLU, 96.6% AIME, runs on single H100',
+      'Llama 3.3 70B: 88% MMLU, 131k context, 8-language multilingual support',
+      'GLM-5: MIT licensed, long-horizon agentic planning, structured tool use',
+    ],
+    'competitor': [
+      { '@type': 'SoftwareApplication', 'name': 'OpenRouter', 'url': 'https://openrouter.ai' },
+      { '@type': 'SoftwareApplication', 'name': 'Fireworks AI', 'url': 'https://fireworks.ai' },
+      { '@type': 'SoftwareApplication', 'name': 'Together AI', 'url': 'https://www.together.ai' },
+    ],
   };
 
   return (
-    <div style={baseStyle}>
+    <section style={baseStyle} aria-label="oxlo.ai AI Inference Pricing Calculator">
+
+      {/* JSON-LD for AEO / GEO / LLM scrapers */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* ── HEADER ────────────────────────────────────────────────────────── */}
-      <div style={{
+      <header style={{
+        display: 'block',
+        position: 'relative',   /* contain the visually-hidden h1 so it doesn't affect sibling flow */
         padding: '28px 36px 22px',
         borderBottom: '1px solid rgba(255,255,255,0.06)',
         background: 'linear-gradient(160deg, rgba(3,247,181,0.05) 0%, transparent 60%)',
       }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '14px', marginBottom: '22px' }}>
           <div>
-            <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.14em', color: '#03F7B5', textTransform: 'uppercase', marginBottom: '4px' }}>
-              OXLO.AI · REQUEST-BASED PRICING DASHBOARD
+            {/* Visually-hidden H1 for strict heading hierarchy and crawler priority */}
+            <h1 style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0 }}>
+              oxlo.ai — Request-Based AI Inference Pricing Calculator
+            </h1>
+            <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.14em', color: '#03F7B5', textTransform: 'uppercase', marginBottom: '4px' }} aria-hidden="true">
+              oxlo.ai · REQUEST-BASED PRICING DASHBOARD
             </div>
             <h2 style={{ fontSize: '24px', fontWeight: 700, margin: 0, color: '#fff', lineHeight: 1.2 }}>
               Savings Calculator
             </h2>
             <p style={{ fontSize: '13px', color: '#6B7280', margin: '4px 0 0', lineHeight: 1.5 }}>
-              Compare flat request billing vs token-based costs across 6 flagship OSS models · All prices verified from live pages
+              Compare flat request billing vs token-based costs across 6 flagship OSS models — all prices verified from live pages
             </p>
           </div>
-          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+          <nav aria-label="oxlo.ai pricing calculator sections" role="tablist" style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
             {TABS.map(tab => (
-              <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{
-                padding: '6px 14px', borderRadius: '7px', fontSize: '11px', fontWeight: 600,
-                border: activeTab === tab.id ? '1px solid rgba(3,247,181,0.5)' : '1px solid rgba(255,255,255,0.08)',
-                background: activeTab === tab.id ? 'rgba(3,247,181,0.1)' : 'rgba(255,255,255,0.02)',
-                color: activeTab === tab.id ? '#03F7B5' : '#6B7280',
-                cursor: 'pointer', textTransform: 'capitalize', letterSpacing: '0.03em', transition: 'all 0.15s',
-              }}>{tab.label}</button>
+              <button
+                key={tab.id}
+                role="tab"
+                aria-selected={activeTab === tab.id}
+                aria-controls={`panel-${tab.id}`}
+                id={`tab-${tab.id}`}
+                onClick={() => setActiveTab(tab.id)}
+                style={{
+                  padding: '6px 14px', borderRadius: '7px', fontSize: '11px', fontWeight: 600,
+                  border: activeTab === tab.id ? '1px solid rgba(3,247,181,0.5)' : '1px solid rgba(255,255,255,0.08)',
+                  background: activeTab === tab.id ? 'rgba(3,247,181,0.1)' : 'rgba(255,255,255,0.02)',
+                  color: activeTab === tab.id ? '#03F7B5' : '#6B7280',
+                  cursor: 'pointer', letterSpacing: '0.03em', transition: 'all 0.15s',
+                }}>{tab.label}</button>
             ))}
-          </div>
+          </nav>
         </div>
 
-        {/* SLIDERS */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: '24px' }}>
-          <Slider label="Daily API requests" value={reqPerDay} min={60} max={2000} step={10}
-            onChange={setReqPerDay} display={`${fmtNum(reqPerDay)}/day · ${fmtNum(monthly)}/mo`} />
-          <Slider label="Input tokens per request" value={inputTokens} min={500} max={16000} step={500}
-            onChange={setInputTokens} display={fmtNum(inputTokens) + ' tokens'} />
-          <Slider label="Output tokens per request" value={outputTokens} min={100} max={4000} step={100}
-            onChange={setOutputTokens} display={fmtNum(outputTokens) + ' tokens'} />
+        {/* SLIDERS — group div used instead of fieldset to avoid browser default min-width/margin on fieldset */}
+        <div role="group" aria-labelledby="sliders-legend" style={{ display: 'block' }}>
+          <span id="sliders-legend" style={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap' }}>Adjust your usage parameters</span>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: '24px' }}>
+            <Slider label="Daily API requests" value={reqPerDay} min={60} max={2000} step={10}
+              onChange={setReqPerDay} display={`${fmtNum(reqPerDay)}/day · ${fmtNum(monthly)}/mo`} />
+            <Slider label="Input tokens per request" value={inputTokens} min={500} max={16000} step={500}
+              onChange={setInputTokens} display={fmtNum(inputTokens) + ' tokens'} />
+            <Slider label="Output tokens per request" value={outputTokens} min={100} max={4000} step={100}
+              onChange={setOutputTokens} display={fmtNum(outputTokens) + ' tokens'} />
+          </div>
         </div>
 
         {/* Current plan pill */}
-        <div style={{ marginTop: '16px', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+        <div style={{ marginTop: '16px', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }} aria-live="polite" aria-atomic="true">
           <div style={{ fontSize: '11px', color: '#6B7280' }}>At {fmtNum(reqPerDay)} req/day →</div>
           <div style={{
             fontSize: '11px', fontWeight: 700, color: plan.color,
@@ -601,20 +665,20 @@ export default function OxloDashboard() {
           {plan.id === 'pro' && <div style={{ fontSize: '11px', color: '#F97316' }}>7-day free trial included</div>}
           {plan.id === 'premium' && <div style={{ fontSize: '11px', color: '#03F7B5' }}>7-day free trial · ≤100ms latency · no queue</div>}
         </div>
-      </div>
+      </header>
 
       {/* ══════════════════════════════════════════════════════════════════ */}
       {/* TAB: DASHBOARD                                                    */}
       {/* ══════════════════════════════════════════════════════════════════ */}
       {activeTab === 'dashboard' && (
-        <div style={{ padding: '28px 36px' }}>
+        <article id="panel-dashboard" role="tabpanel" aria-labelledby="tab-dashboard" style={{ display: 'block', padding: '28px 36px' }}>
 
           {/* STAT ROW */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px', marginBottom: '24px' }}>
             {[
               {
-                label: `Oxlo ${plan.name}`, value: oxloCost !== null ? fmtUSD(oxloCost) : 'Custom',
-                sub: 'FLAT monthly · no token meter', accent: true,
+                label: `oxlo.ai ${plan.name}`, value: oxloCost !== null ? fmtUSD(oxloCost) : 'Custom',
+                sub: 'FLAT monthly — no token meter', accent: true,
               },
               {
                 label: 'Best competitor (cheapest)',
@@ -624,7 +688,7 @@ export default function OxloDashboard() {
               {
                 label: 'Savings vs best competitor',
                 value: savingsVsBest > 0 ? fmtUSD(savingsVsBest) : '—',
-                sub: savingsPctVsBest > 0 ? `${savingsPctVsBest}% cheaper on Oxlo` : 'Token cost lower at this scale',
+                sub: savingsPctVsBest > 0 ? `${savingsPctVsBest}% cheaper on oxlo.ai` : 'Token cost lower at this scale',
                 accent: savingsVsBest > 0,
               },
               {
@@ -648,10 +712,10 @@ export default function OxloDashboard() {
 
           {/* MODEL SELECTOR + BAR CHART */}
           <div style={{ marginBottom: '24px' }}>
-            <div style={{ fontSize: '11px', fontWeight: 700, color: '#4B5563', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '12px' }}>
+            <h3 style={{ fontSize: '11px', fontWeight: 700, color: '#4B5563', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '12px', margin: '0 0 12px' }}>
               Select Flagship Model to Compare
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '8px', marginBottom: '20px' }}>
+            </h3>
+            <div role="radiogroup" aria-label="Select a flagship model to compare pricing" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '8px', marginBottom: '20px' }}>
               {OXLO_MODELS.map(m => (
                 <ModelCard key={m.id} model={m} isSelected={selectedModel === m.id} onClick={setSelectedModel} />
               ))}
@@ -684,31 +748,31 @@ export default function OxloDashboard() {
 
           {/* FULL SAVINGS HEATMAP */}
           <div style={{ marginBottom: '8px' }}>
-            <div style={{ fontSize: '11px', fontWeight: 700, color: '#4B5563', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px' }}>
+            <h3 style={{ fontSize: '11px', fontWeight: 700, color: '#4B5563', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 10px' }}>
               All 6 Flagship Models — Monthly Cost at Your Usage Level
-            </div>
+            </h3>
             <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)' }}>
               <SavingsHeatmap reqPerDay={reqPerDay} inputTokens={inputTokens} outputTokens={outputTokens} />
             </div>
           </div>
 
           <p style={{ fontSize: '10px', color: '#1F2937', textAlign: 'center', marginTop: '16px', lineHeight: 1.7 }}>
-            Competitor rates verified from live pricing pages (Apr 2026). Oxlo costs are flat monthly fees — no per-token billing.
-            {' '}<a href="https://www.oxlo.ai/pricing" target="_blank" rel="noreferrer" style={{ color: '#03F7B5', textDecoration: 'none' }}>View Oxlo pricing →</a>
+            Competitor rates verified from live pricing pages (Apr 2026). oxlo.ai costs are flat monthly fees — no per-token billing.
+            {' '}<a href="https://www.oxlo.ai/pricing" target="_blank" rel="noreferrer" style={{ color: '#03F7B5', textDecoration: 'none' }}>View oxlo.ai pricing →</a>
           </p>
-        </div>
+        </article>
       )}
 
       {/* ══════════════════════════════════════════════════════════════════ */}
       {/* TAB: FLAGSHIP MODELS                                              */}
       {/* ══════════════════════════════════════════════════════════════════ */}
       {activeTab === 'models' && (
-        <div style={{ padding: '28px 36px' }}>
-          <div style={{ fontSize: '11px', fontWeight: 700, color: '#4B5563', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>
-            Oxlo Flagship Model Portfolio
-          </div>
+        <article id="panel-models" role="tabpanel" aria-labelledby="tab-models" style={{ display: 'block', padding: '28px 36px' }}>
+          <h2 style={{ fontSize: '11px', fontWeight: 700, color: '#4B5563', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px', margin: '0 0 6px' }}>
+            oxlo.ai Flagship Model Portfolio
+          </h2>
           <p style={{ fontSize: '12px', color: '#6B7280', marginBottom: '20px', lineHeight: 1.6 }}>
-            All 6 models are available across every Oxlo plan at no extra cost — you pay for requests, not model selection.
+            All 6 models are available across every oxlo.ai plan at no extra cost — you pay for requests, not model selection.
             Token-based competitors charge significantly more for these same flagship models.
           </p>
 
@@ -755,7 +819,7 @@ export default function OxloDashboard() {
                   {/* Cost comparison */}
                   <div style={{ borderTop: '1px solid rgba(255,255,255,0.04)', paddingTop: '10px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <div style={{ fontSize: '10px', color: '#6B7280' }}>Oxlo ({plan.name})</div>
+                      <div style={{ fontSize: '10px', color: '#6B7280' }}>oxlo.ai ({plan.name})</div>
                       <div style={{ fontSize: '14px', fontWeight: 700, color: '#03F7B5', fontFamily: 'monospace' }}>
                         {oxloCost !== null ? fmtUSD(oxloCost) : 'Custom'}
                       </div>
@@ -788,30 +852,30 @@ export default function OxloDashboard() {
           }}>
             <strong style={{ color: '#03F7B5' }}>Key insight:</strong> On OpenRouter and Fireworks, you pay per token consumed per model.
             Running DeepSeek R1 0528 at 300 req/day with 2k input tokens costs ~{fmtUSD(calcMonthlyCost(300, 2000, 500, 0.45, 2.15))}/mo on OpenRouter.
-            On Oxlo Pro ($14.90/mo), same requests cost {fmtUSD(14.9)} — <strong style={{ color: '#03F7B5' }}>regardless of which flagship model you use or how many tokens each request consumes.</strong>
+            On oxlo.ai Pro ($14.90/mo), same requests cost {fmtUSD(14.9)} — <strong style={{ color: '#03F7B5' }}>regardless of which flagship model you use or how many tokens each request consumes.</strong>
           </div>
-        </div>
+        </article>
       )}
 
       {/* ══════════════════════════════════════════════════════════════════ */}
       {/* TAB: PLANS                                                        */}
       {/* ══════════════════════════════════════════════════════════════════ */}
       {activeTab === 'plans' && (
-        <div style={{ padding: '28px 36px' }}>
+        <article id="panel-plans" role="tabpanel" aria-labelledby="tab-plans" style={{ display: 'block', padding: '28px 36px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px', marginBottom: '28px' }}>
             {OXLO_PLANS.map(p => (
               <PlanCard key={p.id} plan={p} isActive={p.id === plan.id} />
             ))}
           </div>
 
-          <div style={{ fontSize: '11px', fontWeight: 700, color: '#4B5563', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px' }}>
+          <h2 style={{ fontSize: '11px', fontWeight: 700, color: '#4B5563', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 10px' }}>
             When to upgrade — upgrade decision guide
-          </div>
+          </h2>
           <WhenToUpgrade reqPerDay={reqPerDay} plan={plan} />
 
-          <div style={{ fontSize: '11px', fontWeight: 700, color: '#4B5563', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px', marginTop: '24px' }}>
+          <h2 style={{ fontSize: '11px', fontWeight: 700, color: '#4B5563', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '24px 0 10px' }}>
             Full feature comparison — source: oxlo.ai/pricing
-          </div>
+          </h2>
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11px', minWidth: '460px' }}>
               <thead>
@@ -837,20 +901,20 @@ export default function OxloDashboard() {
               </tbody>
             </table>
           </div>
-        </div>
+        </article>
       )}
 
       {/* ══════════════════════════════════════════════════════════════════ */}
       {/* TAB: WHY OXLO (USP)                                              */}
       {/* ══════════════════════════════════════════════════════════════════ */}
       {activeTab === 'usp' && (
-        <div style={{ padding: '28px 36px' }}>
-          <div style={{ fontSize: '13px', fontWeight: 700, color: '#fff', marginBottom: '6px' }}>
-            The Oxlo Advantage — Request-Based vs Token-Based Billing
-          </div>
+        <article id="panel-usp" role="tabpanel" aria-labelledby="tab-usp" style={{ display: 'block', padding: '28px 36px' }}>
+          <h2 style={{ fontSize: '13px', fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>
+            The oxlo.ai Advantage — Request-Based vs Token-Based Billing
+          </h2>
           <p style={{ fontSize: '12px', color: '#6B7280', marginBottom: '20px', lineHeight: 1.7 }}>
             Token-based billing means your monthly bill is unpredictable — it scales with every prompt length change, every output verbosity increase,
-            every context expansion. Oxlo eliminates this. You pay for API calls, not token consumption.
+            every context expansion. oxlo.ai eliminates this. You pay for API calls, not token consumption.
           </p>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px', marginBottom: '24px' }}>
@@ -863,9 +927,9 @@ export default function OxloDashboard() {
             <UspPillar icon="" title="OpenAI-Compatible"
               body="Drop-in replacement for OpenAI SDK. Change base URL and API key — your existing code works unchanged." />
             <UspPillar icon="" title="No Surprise Token Bills"
-              body="Competitors charge $0.45–$2.15/1M for DeepSeek R1. At 300 req/day with 2k tokens, that's $81/mo. Oxlo Pro: $14.90." />
+              body="Competitors charge $0.45–$2.15/1M for DeepSeek R1. At 300 req/day with 2k tokens, that's $81/mo. oxlo.ai Pro: $14.90." />
             <UspPillar icon="" title="Free Tier With Real Models"
-              body="Unlike OpenRouter's free tier (rate-limited, queued), Oxlo Free gives structured access to all flagship models at 60 req/day." />
+              body="Unlike OpenRouter's free tier (rate-limited, queued), oxlo.ai Free gives structured access to all flagship models at 60 req/day." />
           </div>
 
           {/* Breakeven chart */}
@@ -874,14 +938,14 @@ export default function OxloDashboard() {
             background: 'rgba(3,247,181,0.03)', border: '1px solid rgba(3,247,181,0.12)',
             marginBottom: '20px',
           }}>
-            <div style={{ fontSize: '12px', fontWeight: 700, color: '#03F7B5', marginBottom: '12px' }}>
-              Break-Even Analysis — When Does Each Oxlo Plan Beat Token Pricing?
-            </div>
+            <h3 style={{ fontSize: '12px', fontWeight: 700, color: '#03F7B5', margin: '0 0 12px' }}>
+              Break-Even Analysis — When Does Each oxlo.ai Plan Beat Token Pricing?
+            </h3>
             {[
               {
                 plan: 'Free ($0)',
                 color: '#6B7280',
-                insight: 'Always wins. $0/mo beats any token provider for ≤60 req/day. Groq Llama 3.1 8B ($0.05/1M) at 60 req/day with 2k tokens = $0.18/mo. Oxlo = $0. No contest.',
+                insight: 'Always wins. $0/mo beats any token provider for ≤60 req/day. Groq Llama 3.1 8B ($0.05/1M) at 60 req/day with 2k tokens = $0.18/mo. oxlo.ai Free = $0. No contest.',
               },
               {
                 plan: 'Pro ($14.90)',
@@ -907,9 +971,9 @@ export default function OxloDashboard() {
           </div>
 
           {/* Token price variance visualization */}
-          <div style={{ fontSize: '11px', fontWeight: 700, color: '#4B5563', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px' }}>
-            Token price range across competitors for Oxlo's 6 flagship models (per 1M output tokens)
-          </div>
+          <h3 style={{ fontSize: '11px', fontWeight: 700, color: '#4B5563', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 10px' }}>
+            Token price range across competitors for oxlo.ai's 6 flagship models (per 1M output tokens)
+          </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
             {OXLO_MODELS.map(model => {
               const comp = COMPETITOR_PRICING[model.id];
@@ -938,19 +1002,19 @@ export default function OxloDashboard() {
             })}
           </div>
           <p style={{ fontSize: '10px', color: '#374151', marginTop: '8px', lineHeight: 1.6 }}>
-            Oxlo's flat pricing is immune to this variance. Whether output tokens are $0.19 (GPT-OSS) or $3.20 (GLM-5 Together), your monthly bill stays fixed.
+            oxlo.ai's flat pricing is immune to this variance. Whether output tokens are $0.19 (GPT-OSS) or $3.20 (GLM-5 Together), your monthly bill stays fixed.
           </p>
-        </div>
+        </article>
       )}
 
       {/* ══════════════════════════════════════════════════════════════════ */}
       {/* TAB: SOURCES & CITATIONS                                         */}
       {/* ══════════════════════════════════════════════════════════════════ */}
       {activeTab === 'sources' && (
-        <div style={{ padding: '28px 36px' }}>
-          <div style={{ fontSize: '11px', fontWeight: 700, color: '#4B5563', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>
+        <article id="panel-sources" role="tabpanel" aria-labelledby="tab-sources" style={{ display: 'block', padding: '28px 36px' }}>
+          <h2 style={{ fontSize: '11px', fontWeight: 700, color: '#4B5563', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 6px' }}>
             All Pricing Data, Sources & Citation Depth — Verified Apr 2026
-          </div>
+          </h2>
           <p style={{ fontSize: '12px', color: '#6B7280', lineHeight: 1.7, marginBottom: '20px' }}>
             Every competitor price in this calculator is sourced directly from official provider model pages or cross-referenced against independent auditing tools.
             No prices are estimated — all are pulled from live pages.
@@ -1012,9 +1076,9 @@ export default function OxloDashboard() {
             Prices change frequently. This calculator reflects verified rates as of Apr 2026 — always confirm at source.
             Enterprise rates and volume discounts not reflected. OpenRouter adds 5.5% credit purchase fee (not included above).
           </p>
-        </div>
+        </article>
       )}
 
-    </div>
+    </section>
   );
 }
