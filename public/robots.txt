@@ -66,3 +66,4 @@ Sitemap: https://oxlo.ai/sitemap.xml
 
 # LLMs.txt - structured product overview for AI systems
 # See https://llmstxt.org for the specification
+Host: https://oxlo.ai
