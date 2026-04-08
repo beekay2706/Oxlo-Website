@@ -251,6 +251,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Cost Calculator - positioned after hero */}
+      <section className="common-section" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
+        <div className="container">
+          <CostCalculator />
+        </div>
+      </section>
+
       <section className="common-section fiveg-section">
         <div className="container">
           <div className="fiveg-wrap flow-hidden">
@@ -362,7 +369,7 @@ export default function Home() {
           </motion.p>
           </div>
           
-          <CostCalculator />
+
 
           <div className="comparison-container">
             <div className="table-row header-row">
