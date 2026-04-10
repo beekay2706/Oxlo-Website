@@ -4,8 +4,12 @@ import { ChevronDown } from "lucide-react";
 
 const FAQ_ITEMS = [
   {
+    question: "Is Oxlo.ai an alternative to Together AI, Fireworks AI or OpenRouter?",
+    answer: "Yes. Oxlo.ai is a cost-efficient alternative for teams running large reasoning models in production. Unlike token-based providers, Oxlo.ai charges a flat monthly rate regardless of request volume or output length.",
+  },
+  {
     question: "How is Oxlo.ai different from Together AI, Fireworks AI, and OpenRouter?",
-    answer: "Oxlo.ai is the only major inference provider that uses request-based pricing - you pay a flat fee per API call regardless of prompt length. Together AI, Fireworks AI, OpenRouter, and Replicate all charge per token (input + output), which means costs scale with prompt size. For long-context workloads like RAG pipelines or document analysis, Oxlo.ai can be 10-100x cheaper. All platforms support similar open-source models, but Oxlo.ai eliminates variable billing entirely.",
+    answer: "Oxlo.ai is your go-to inference provider that uses request-based pricing - you pay a flat fee per API call regardless of prompt length. Together AI, Fireworks AI, OpenRouter, and Replicate all charge per token (input + output), which means costs scale with prompt size. For long-context workloads like RAG pipelines or document analysis, Oxlo.ai can be 10-100x cheaper. All platforms support similar open-source models, but Oxlo.ai eliminates variable billing entirely.",
   },
   {
     question: "What is request-based pricing for AI APIs?",

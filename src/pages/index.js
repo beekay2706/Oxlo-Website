@@ -7,7 +7,7 @@ import FaqSection from "@/components/FaqSection";
 import rocket from "../../public/images/rocket.svg";
 import rocketColored from "../../public/images/rocketColored.svg";
 import hero from "../../public/images/hero-animation.gif";
-import shock  from "../../public/images/shock.svg";
+import shock from "../../public/images/shock.svg";
 import dollar from "../../public/images/dollar.svg";
 import shield from "../../public/images/shield.svg";
 import scale from "../../public/images/scale.svg";
@@ -36,10 +36,18 @@ const homepageFaqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "Is Oxlo.ai an alternative to Together AI, Fireworks AI or OpenRouter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Oxlo.ai is a cost-efficient alternative for teams running large reasoning models in production. Unlike token-based providers, Oxlo.ai charges a flat monthly rate regardless of request volume or output length."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "How is Oxlo.ai different from Together AI, Fireworks AI, and OpenRouter?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Oxlo.ai is the only major inference provider that uses request-based pricing - you pay a flat fee per API call regardless of prompt length. Together AI, Fireworks AI, OpenRouter, and Replicate all charge per token (input + output), which means costs scale with prompt size. For long-context workloads like RAG pipelines or document analysis, Oxlo.ai can be 10 to 100 times cheaper. All platforms support similar open-source models, but Oxlo.ai eliminates variable billing entirely."
+        "text": "Oxlo.ai is your go-to inference provider that uses request-based pricing - you pay a flat fee per API call regardless of prompt length. Together AI, Fireworks AI, OpenRouter, and Replicate all charge per token (input + output), which means costs scale with prompt size. For long-context workloads like RAG pipelines or document analysis, Oxlo.ai can be 10 to 100 times cheaper. All platforms support similar open-source models, but Oxlo.ai eliminates variable billing entirely."
       }
     },
     {
@@ -134,18 +142,18 @@ export default function Home() {
   ];
 
   const aiUseCases = [
-    { icon: sixOne, title: "Chatbots & AI Assistants", description: "Build chatbots and assistants for support, internal tools, and workflows.", models: "LLaMA-3.1-8B, Mistral-7B-Instruct-v0.2", delay: 0 },
-    { icon: sixTwo, title: "Document Q&A and RAG", description: "Query documents, PDFs, and knowledge bases using retrieval-augmented generation.", models: "BGE-Large-v1.5, E5-Large-v2, LLaMA-3.1-8B", delay: 0.1 },
-    { icon: sixThree, title: "Text Generation & Summarization", description: "Generate, rewrite, or summarize text for apps and internal systems.", models: "Mixtral-8x7B-Instruct, Mistral-7B-Instruct-v0.2", delay: 0.2 },
-    { icon: sixFour, title: "Image Understanding", description: "Analyze images for classification, detection, or visual understanding.", models: "YOLOv8, CLIP-ViT-L/14", delay: 0.3 },
-    { icon: sixFive, title: "Speech-to-Text", description: "Convert audio into text for transcription and analysis workflows.", models: "Whisper-Large-v3, Whisper-Medium", delay: 0.4 },
-    { icon: sixSix, title: "Batch AI Processing", description: "Process large volumes of AI requests efficiently using async or batch workflows.", models: "LLaMA-3.1-8B, Mixtral-8x7B, BGE-Large-v1.5", delay: 0.5 },
+    { icon: sixOne, title: "Chatbots & AI Assistants", description: "Build chatbots and assistants for support, internal tools, and workflows.", models: "DeepSeek V3.2, Llama 3.3 70B, Qwen 3 32B", delay: 0 },
+    { icon: sixTwo, title: "Document Q&A and RAG", description: "Query documents, PDFs, and knowledge bases using retrieval-augmented generation.", models: "BGE-Large, E5-Large, DeepSeek R1", delay: 0.1 },
+    { icon: sixThree, title: "Text Generation & Summarization", description: "Generate, rewrite, or summarize text for apps and internal systems.", models: "Qwen 3 32B, GPT-OSS 120B, Llama 3.3 70B", delay: 0.2 },
+    { icon: sixFour, title: "Image Understanding", description: "Analyze images for classification, detection, or visual understanding.", models: "YOLOv9, YOLOv11, Gemma 3 27B", delay: 0.3 },
+    { icon: sixFive, title: "Speech & Audio", description: "Convert audio into text or generate speech for transcription and voice workflows.", models: "Whisper Large v3, Whisper Turbo, Kokoro TTS", delay: 0.4 },
+    { icon: sixSix, title: "Batch AI Processing", description: "Process large volumes of AI requests efficiently using async or batch workflows.", models: "Llama 3.1 8B, DeepSeek V3.2, BGE-Large", delay: 0.5 },
   ];
 
   return (
     <>
       <Head>
-        <title>Oxlo.ai - AI Inference API with Request-Based Pricing | 40+ Models</title>
+        <title>Oxlo.ai | Flat Monthly Pricing for AI Inference.</title>
         <meta
           name="description"
           content="Developer-first AI inference platform with request-based pricing. Run 40+ open-source models (Qwen 3 32B, Llama 3.3 70B, DeepSeek R1, Mistral, Whisper, SDXL) via OpenAI-compatible API. Pay per request, not per token. Free tier available."
@@ -202,12 +210,11 @@ export default function Home() {
                   </div>
                 </Link>
                 <h1 className="hero-heading">
-                  <span className="break">Build AI</span>
-                  <span className="break">Pay LESS</span>
-                  <span className="break">Ship FASTER</span>
+                  <span className="break">Unpredictable AI bills?</span>
+                  <span className="break">We fixed that</span>
                 </h1>
                 <p className="home-desc">
-                  A developer-first AI Inference platform with radically lower compute costs.
+                  Oxlo.ai gives you a flat monthly plan for AI inference. One fixed bill. Every month. Regardless of how much you build.
                 </p>
                 <Button
                   title="Get started for free"
@@ -238,14 +245,14 @@ export default function Home() {
           </div> */}
           <div className="achievement-wrap">
             <Link href="https://stlpartners.com/articles/edge-computing/50-edge-computing-companies-to-watch-in-2026/"
-               target="_blank" rel="noopener">
-                <Image src={STL} alt="STL Partners — Top edge companies for 2026"/>
+              target="_blank" rel="noopener">
+              <Image src={STL} alt="STL Partners — Top edge companies for 2026" />
             </Link>
             <Link href="https://www.f6s.com/company/cyborg-network" target="_blank" rel="noopener">
-                <Image src={f6s} alt="AI"/>
+              <Image src={f6s} alt="AI" />
             </Link>
             <Link href="https://peerpush.net/p/oxloai-uosi" target="_blank" rel="noopener">
-                <Image src={TopProd} alt="AI"/>
+              <Image src={TopProd} alt="AI" />
             </Link>
           </div>
         </div>
@@ -270,7 +277,7 @@ export default function Home() {
                   initial={{ opacity: 0, translateX: -75 }}
                   whileInView={{ opacity: 1, translateX: 0 }}
                 >
-                  Ready to build? Create a free account and start running AI without worrying about tokens or surprise bills.
+                  Ready to build? Create a free account and start shipping without worrying about your AI bill.
                 </motion.h1>
                 <motion.div
                   viewport={{ once: true }}
@@ -296,7 +303,7 @@ export default function Home() {
                   initial={{ opacity: 0, translateX: 75 }}
                   whileInView={{ opacity: 1, translateX: 0 }}
                 >
-                  Oxlo.ai is built for developers and teams that care about cost clarity. Pricing is designed to be significantly more affordable, with simple request-based plans instead of token-based billing.
+                  Oxlo.ai is built for developers and AI teams who want cost clarity without complexity. A flat monthly plan means your infrastructure bill is always known, always fixed, and never a surprise.
                 </motion.p>
                 <motion.div
                   viewport={{ once: true }}
@@ -304,12 +311,12 @@ export default function Home() {
                   initial={{ opacity: 0, translateY: 25 }}
                   whileInView={{ opacity: 1, translateY: 0 }}
                 >
-                <Button
-                  title="Start running AI in seconds"
-                  link="https://portal.oxlo.ai/"
-                  size="btn-md"
-                  icon={shock}
-                />
+                  <Button
+                    title="Start building for free"
+                    link="https://portal.oxlo.ai/"
+                    size="btn-md"
+                    icon={shock}
+                  />
                 </motion.div>
               </div>
             </div>
@@ -318,9 +325,9 @@ export default function Home() {
       </section>
 
       <section className='common-section nine-section bottom-blur'>
-          <div className='container'>
+        <div className='container'>
           <div className='text-center'>
-            <motion.h2 className="section-heading"  viewport={{ once: true }} transition={{ ease: "easeInOut", duration: 0.5 }} initial={{ opacity: 0, translateY: 100 }} whileInView={{ opacity: 1, translateY: 0 }}>Applications</motion.h2>
+            <motion.h2 className="section-heading" viewport={{ once: true }} transition={{ ease: "easeInOut", duration: 0.5 }} initial={{ opacity: 0, translateY: 100 }} whileInView={{ opacity: 1, translateY: 0 }}>What teams build on Oxlo.ai</motion.h2>
           </div>
           <div className='box-wrap'>
             <div className='box-border'></div>
@@ -347,28 +354,28 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
-          </div>
+        </div>
       </section>
 
       <section className='common-section pill-section'>
         <div className='container'>
           <div className='text-center'>
-          <motion.div className='section-badge' viewport={{ once: true }} transition={{ ease: "easeInOut", duration: 0.5 }} initial={{ opacity: 0, translateY: 50 }} whileInView={{ opacity: 1, translateY: 0 }}>
-            <Image src={bulb} alt='bulb-icon' />
-            <span>Rethinking AI Pricing</span>
-          </motion.div>
-          <motion.h2 className="section-heading"  viewport={{ once: true }} transition={{ ease: "easeInOut", duration: 0.5, delay: 0.25 }} initial={{ opacity: 0, translateY: 50 }} whileInView={{ opacity: 1, translateY: 0 }}>How <span class="text-gradient">Oxlo.ai</span> Stands Out</motion.h2>  
-          <motion.p
-            className="section-desc"
-            viewport={{ once: true }}
-            transition={{ ease: "easeInOut", duration: 0.5, delay: 0.5 }}
-            initial={{ opacity: 0, translateY: 50 }}
-            whileInView={{ opacity: 1, translateY: 0 }}
-          >
-            A practical comparison across pricing models, developer experience, and ease of deployment.
-          </motion.p>
+            <motion.div className='section-badge' viewport={{ once: true }} transition={{ ease: "easeInOut", duration: 0.5 }} initial={{ opacity: 0, translateY: 50 }} whileInView={{ opacity: 1, translateY: 0 }}>
+              <Image src={bulb} alt='bulb-icon' />
+              <span>Why teams switch to Oxlo.ai</span>
+            </motion.div>
+            <motion.h2 className="section-heading" viewport={{ once: true }} transition={{ ease: "easeInOut", duration: 0.5, delay: 0.25 }} initial={{ opacity: 0, translateY: 50 }} whileInView={{ opacity: 1, translateY: 0 }}>How <span class="text-gradient">Oxlo.ai</span> Stands Out</motion.h2>
+            <motion.p
+              className="section-desc"
+              viewport={{ once: true }}
+              transition={{ ease: "easeInOut", duration: 0.5, delay: 0.5 }}
+              initial={{ opacity: 0, translateY: 50 }}
+              whileInView={{ opacity: 1, translateY: 0 }}
+            >
+              Token billing makes your AI infrastructure costs unpredictable. Oxlo.ai is your go-to inference platform for flat monthly pricing. Here is how we compare.
+            </motion.p>
           </div>
-          
+
 
 
           <div className="comparison-container">
@@ -427,21 +434,21 @@ export default function Home() {
             ))}
           </div>
           <motion.div
-                className="text-center"
-                viewport={{ once: true }}
-                transition={{ ease: "easeInOut", duration: 0.75, delay: 0.5 }}
-                initial={{ opacity: 0, translateY: 75 }}
-                whileInView={{ opacity: 1, translateY: 0 }}
-              >
-                <Button
-                  title="Get started with Oxlo.ai"
-                  link="https://portal.oxlo.ai/"
-                  size="btn-md"
-                  icon={rocket}
-                />
-              </motion.div>
+            className="text-center"
+            viewport={{ once: true }}
+            transition={{ ease: "easeInOut", duration: 0.75, delay: 0.5 }}
+            initial={{ opacity: 0, translateY: 75 }}
+            whileInView={{ opacity: 1, translateY: 0 }}
+          >
+            <Button
+              title="Get started with Oxlo.ai"
+              link="https://portal.oxlo.ai/"
+              size="btn-md"
+              icon={rocket}
+            />
+          </motion.div>
         </div>
-      </section> 
+      </section>
 
       {/* Visible FAQ Section — matches JSON-LD FAQPage schema for GEO/AEO */}
       <FaqSection />
@@ -466,7 +473,7 @@ export default function Home() {
                 initial={{ opacity: 0, translateY: 75 }}
                 whileInView={{ opacity: 1, translateY: 0 }}
               >
-                Run AI models without worrying about usage calculations.
+                Flat monthly pricing. Your AI infrastructure cost, sorted.
               </motion.p>
               <motion.div
                 viewport={{ once: true }}
@@ -475,7 +482,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, translateY: 0 }}
               >
                 <Button
-                  title="Deploy Now"
+                  title="Start for free"
                   link="https://portal.oxlo.ai/"
                   size="btn-md"
                   icon={rocket}

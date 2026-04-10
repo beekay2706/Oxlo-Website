@@ -1,5 +1,4 @@
 import Header from '@/components/Header';
-import Headline from '@/components/Headline';
 import Footer from '@/components/Footer';
 import { Analytics } from '@/components/GoogleAnalytics';
 import '@/styles/globals.css';
@@ -14,7 +13,6 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Analytics />
-      <Headline/>
       <Header/>
       <Component {...pageProps} />
       <Footer/>
