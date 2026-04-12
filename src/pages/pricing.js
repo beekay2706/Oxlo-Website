@@ -34,7 +34,7 @@ const pricingFaqSchema = {
     {
       "@type": "Question",
       "name": "Is Oxlo.ai cheaper than Together AI, Fireworks AI, and OpenRouter?",
-      "acceptedAnswer": { "@type": "Answer", "text": "For long-context workloads, yes. Together AI, Fireworks AI, and OpenRouter all charge per token, so costs scale linearly with prompt length. Running 500 API calls per day with 3,000-token prompts costs approximately $40-60/month on these providers vs $49.90/month on Oxlo.ai Premium. But as prompt length increases beyond 10,000 tokens, Oxlo.ai can be 10-100x cheaper since every request costs the same flat rate." }
+      "acceptedAnswer": { "@type": "Answer", "text": "For teams running long-context or reasoning model workloads, yes. Together AI, Fireworks AI, and OpenRouter all charge per token, so costs scale linearly with prompt length. Running 500 API calls per day with 3,000-token prompts costs approximately $40-60/month on these providers vs $49.90/month on Oxlo.ai Premium. But as prompt length increases beyond 10,000 tokens, Oxlo.ai can be 10-100x cheaper since every request costs the same flat rate." }
     },
     {
       "@type": "Question",
@@ -50,16 +50,22 @@ const pricingFaqSchema = {
       "@type": "Question",
       "name": "Can I switch plans at any time?",
       "acceptedAnswer": { "@type": "Answer", "text": "Yes, you can upgrade or downgrade your plan at any time. When upgrading, you get immediate access to the higher plan's limits. All plans are billed monthly with no long-term contracts required." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Oxlo.ai offer guaranteed savings for enterprise teams?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Teams currently spending $200 or more per month on AI inference with providers like Together AI, Fireworks AI or OpenRouter are eligible for our Enterprise plan which guarantees a minimum 30 percent reduction on their current monthly bill. Contact us at hello@oxlo.ai to discuss your current usage." }
     }
   ]
 };
 
 const PRICING_FAQ_ITEMS = [
   { question: "How does request-based pricing work?", answer: "With Oxlo.ai's request-based pricing, you pay a flat monthly subscription that includes a set number of API requests per day. Each request costs the same regardless of how many tokens are in your prompt or response. A 100-token prompt costs the same as a 50,000-token prompt. This is fundamentally different from token-based pricing used by OpenAI, Together AI, Fireworks AI, OpenRouter, and Replicate." },
-  { question: "Is Oxlo.ai cheaper than Together AI, Fireworks AI, and OpenRouter?", answer: "For long-context workloads, yes. Together AI, Fireworks AI, and OpenRouter all charge per token, so costs scale linearly with prompt length. Running 500 API calls per day with 3,000-token prompts costs approximately $40-60/month on these providers vs $49.90/month on Oxlo.ai Premium. But as prompt length increases beyond 10,000 tokens, Oxlo.ai can be 10-100x cheaper since every request costs the same flat rate." },
+  { question: "Is Oxlo.ai cheaper than Together AI, Fireworks AI, and OpenRouter?", answer: "For teams running long-context or reasoning model workloads, yes. Together AI, Fireworks AI, and OpenRouter all charge per token, so costs scale linearly with prompt length. Running 500 API calls per day with 3,000-token prompts costs approximately $40-60/month on these providers vs $49.90/month on Oxlo.ai Premium. But as prompt length increases beyond 10,000 tokens, Oxlo.ai can be 10-100x cheaper since every request costs the same flat rate." },
   { question: "Does Oxlo.ai offer a free trial?", answer: "Yes. New users get a 7-day free trial with full access to all 40+ models including Qwen 3 32B, Llama 3.3 70B, DeepSeek R1, and premium image generation. No credit card required to start. The Free tier (60 requests/day, 16+ models) is available permanently." },
   { question: "What happens if I exceed my daily request limit?", answer: "When you reach your daily request limit, additional requests are queued until the next day or you can upgrade your plan for higher limits. There are no overage charges - your costs are always predictable and fixed. This is unlike token-based providers where a single runaway prompt can spike your bill." },
   { question: "Can I switch plans at any time?", answer: "Yes, you can upgrade or downgrade your plan at any time. When upgrading, you get immediate access to the higher plan's limits. All plans are billed monthly with no long-term contracts required." },
+  { question: "Does Oxlo.ai offer guaranteed savings for enterprise teams?", answer: "Yes. Teams currently spending $200 or more per month on AI inference with providers like Together AI, Fireworks AI or OpenRouter are eligible for our Enterprise plan which guarantees a minimum 30 percent reduction on their current monthly bill. Contact us at hello@oxlo.ai to discuss your current usage." },
 ];
 
 export default function Pricing() {
@@ -77,7 +83,7 @@ export default function Pricing() {
           content="AI API pricing, request-based pricing, LLM pricing comparison, Together AI pricing, cheapest AI API, AI inference cost, token vs request pricing"
         />
         <link rel="canonical" href="https://oxlo.ai/pricing" />
-        <meta property="og:title" content="Oxlo.ai Pricing - Pay Per Request, Not Per Token" />
+        <meta property="og:title" content="Oxlo.ai Pricing | Flat Monthly Plans for AI Inference." />
         <meta property="og:description" content="Request-based AI API pricing starting at $0. No token counting. No surprise bills." />
         <meta property="og:url" content="https://oxlo.ai/pricing" />
         <meta name="robots" content="index, follow" />
@@ -102,7 +108,7 @@ export default function Pricing() {
               initial={{ opacity: 0, translateY: 100 }}
               whileInView={{ opacity: 1, translateY: 0 }}
             >
-              <h1 className="hero-heading">Simple,  predictable pricing</h1>
+              <h1 className="hero-heading">Flat monthly pricing for AI inference</h1>
               <motion.div
                 viewport={{ once: true }}
                 transition={{
@@ -115,7 +121,7 @@ export default function Pricing() {
                 whileInView={{ opacity: 1, translateY: 0 }}
               >
                 <p className="home-desc">
-                  Request-based plans designed for developers and small teams. Start free, scale when you need to, and never worry about token calculations.
+                  One fixed monthly price. No billing surprises. No usage calculations. Start free and scale when you are ready.
                 </p>
               </motion.div>
             </motion.div>
@@ -130,7 +136,7 @@ export default function Pricing() {
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
             >
-              
+
             </motion.div>
           </div>
           <div className="pricing-container">
@@ -147,7 +153,7 @@ export default function Pricing() {
               <div className="card">
                 <div className="card-up">
                   <h3>Free</h3>
-                  <p className="subtitle">For developers exploring Oxlo and testing ideas.</p>
+                  <p className="subtitle">For developers getting started with Oxlo.ai.</p>
                 </div>
                 <div className="price">
                   $0<span>/month</span>
@@ -173,7 +179,7 @@ export default function Pricing() {
                 </div>
                 <ul>
                   <li>
-                    <CircleCheckBig size={16} strokeWidth={1.5} /> Access to smaller OSS models
+                    <CircleCheckBig size={16} strokeWidth={1.5} /> Access to 12 plus open source models
                   </li>
                   <li>
                     <CircleCheckBig size={16} strokeWidth={1.5} /> Clear usage limits
@@ -189,9 +195,9 @@ export default function Pricing() {
                 <div className="card-up">
                   <h3>Pro</h3>
                   <p className="offer">
-                    (Early bull discount)
+                    {/* (Early bull discount) */}
                   </p>
-                  <p className="subtitle">For builders running early apps and prototypes.</p>
+                  <p className="subtitle">For developers building and shipping AI-powered products.</p>
                 </div>
                 <div className="price">
                   $14.9 <span className="original-price">$35</span>
@@ -221,7 +227,7 @@ export default function Pricing() {
                     <CircleCheckBig size={16} strokeWidth={1.5} /> Faster request handling
                   </li>
                   <li>
-                    <CircleCheckBig size={16} strokeWidth={1.5} /> Access to optimized inference models
+                    <CircleCheckBig size={16} strokeWidth={1.5} /> Access to optimised models for development and prototyping
                   </li>
                   <li>
                     <CircleCheckBig size={16} strokeWidth={1.5} /> Higher throughput for development workloads
@@ -267,45 +273,52 @@ export default function Pricing() {
                     <CircleCheckBig size={16} strokeWidth={1.5} /> Higher and consistent throughput
                   </li>
                   <li>
-                    <CircleCheckBig size={16} strokeWidth={1.5} /> Designed for production environments
+                    <CircleCheckBig size={16} strokeWidth={1.5} /> All large reasoning models including DeepSeek R1 and Kimi K2
                   </li>
                 </ul>
               </div>
 
-              <div className="card">
+              <div className="card enterprise">
+                <div className="badge hot">30% Off</div>
                 <div className="card-up">
                   <h3>Enterprise</h3>
-                  <p className="subtitle">For high-volume or custom requirements.</p>
+                  <p className="subtitle">For teams currently spending $200 or more per month on AI inference.</p>
                 </div>
-                <div className="custom price">Custom pricing</div>
-                <div className="limit-title">Limit:</div>
+                <div className="price">
+                  <span className="enterprise-highlight">30%</span>
+                  <span> off your AI bill</span>
+                </div>
+                <div className="limit-title">Includes:</div>
                 <ul>
                   <li>
-                    <span className="bullet"></span> Custom or unlimited request volumes
+                    <span className="bullet"></span> Custom request volumes
                   </li>
                   <li>
-                    <span className="bullet"></span> Dedicated capacity options
+                    <span className="bullet"></span> Dedicated capacity & SLA
                   </li>
                 </ul>
                 <Button
-                  title="Email Us!"
-                  link="mailto:hello@oxlo.ai"
+                  title="Book a Call"
+                  link="https://calendly.com/oxlo_ai/enterprise"
                   size="btn-sm"
                   theme="dark"
                 />
-                <p className="payment-info"></p>
+                <p className="payment-info">No commitment. Explore what&apos;s possible.</p>
                 <div className="limit-title">
                   Everything in Premium, plus
                 </div>
                 <ul>
                   <li>
-                    <CircleCheckBig size={16} strokeWidth={1.5} /> Custom usage limits
+                    <CircleCheckBig size={16} strokeWidth={1.5} /> 30% guaranteed cost reduction
                   </li>
                   <li>
-                    <CircleCheckBig size={16} strokeWidth={1.5} /> Dedicated support
+                    <CircleCheckBig size={16} strokeWidth={1.5} /> Dedicated support & SLA
                   </li>
                   <li>
-                    <CircleCheckBig size={16} strokeWidth={1.5} /> Tailored deployment options
+                    <CircleCheckBig size={16} strokeWidth={1.5} /> Shared team usage dashboard
+                  </li>
+                  <li>
+                    <CircleCheckBig size={16} strokeWidth={1.5} /> Custom model selection
                   </li>
                 </ul>
               </div>
@@ -317,7 +330,7 @@ export default function Pricing() {
       <section className="common-section compare-section">
         <div className="container">
           <div className='text-center'>
-            <motion.h2 className="section-heading"  viewport={{ once: true }} transition={{ ease: "easeInOut", duration: 0.5, delay: 0.25 }} initial={{ opacity: 0, translateY: 50 }} whileInView={{ opacity: 1, translateY: 0 }}>Compare the <span class="text-gradient">plans</span></motion.h2>  
+            <motion.h2 className="section-heading" viewport={{ once: true }} transition={{ ease: "easeInOut", duration: 0.5, delay: 0.25 }} initial={{ opacity: 0, translateY: 50 }} whileInView={{ opacity: 1, translateY: 0 }}>Compare the <span class="text-gradient">plans</span></motion.h2>
             <motion.p
               className="section-desc"
               viewport={{ once: true }}
@@ -329,12 +342,12 @@ export default function Pricing() {
             </motion.p>
           </div>
           <div className="pricing-header">
-              <div className="toggle-group">
-                <button className="toggle-btn active">OxAPIs</button>
-                <button className="toggle-btn">
-                  OxCompute <span>(Coming Soon)</span>
-                </button>
-              </div>
+            <div className="toggle-group">
+              <button className="toggle-btn active">OxAPIs</button>
+              <button className="toggle-btn">
+                OxCompute <span>(Coming Soon)</span>
+              </button>
+            </div>
           </div>
           <div className="table-wrapper">
             <table className="compare-table">
@@ -361,7 +374,7 @@ export default function Pricing() {
                       <div className="price">
                         $14.9<span>/month</span>
                       </div>
-                       <Button
+                      <Button
                         title="7 day free trial"
                         link="https://portal.oxlo.ai/"
                         size="btn-md"
@@ -386,9 +399,9 @@ export default function Pricing() {
                     <div className="plan-header-card">
                       <h4>Enterprise</h4>
                       <div className="price">Custom pricing</div>
-                       <Button
-                        title="Email Us!"
-                        link="mailto:hello@oxlo.ai"
+                      <Button
+                        title="Book a Call"
+                        link="https://calendly.com/oxlo_ai/enterprise"
                         size="btn-md"
                         theme="dark"
                       />
@@ -421,15 +434,15 @@ export default function Pricing() {
                   <td className="feature-name">Monthly request cap</td>
                   <td className="plan-col value">Yes</td>
                   <td className="plan-col value">Yes</td>
-                  <td className="plan-col value">No small daily cap</td>
+                  <td className="plan-col value">None</td>
                   <td className="plan-col value">Custom</td>
                 </tr>
                 <tr>
-                  <td className="feature-name">Queued behind paid traffic</td>
-                  <td className="plan-col value">Yes</td>
-                  <td className="plan-col value">Yes (Behind Premium)</td>
-                  <td className="plan-col value">No</td>
-                  <td className="plan-col value">No (Dedicated GPUs)</td>
+                  <td className="feature-name">Request priority level</td>
+                  <td className="plan-col value">Lowest</td>
+                  <td className="plan-col value">Standard</td>
+                  <td className="plan-col value">High</td>
+                  <td className="plan-col value">Dedicated</td>
                 </tr>
 
                 {/* Models & Performance */}
@@ -476,17 +489,17 @@ export default function Pricing() {
                 </tr>
                 <tr>
                   <td className="feature-name">Input tokens / request</td>
-                  <td className="plan-col value">Up to 2k</td>
-                  <td className="plan-col value">Up to 4k</td>
-                  <td className="plan-col value">8k-16k</td>
-                  <td className="plan-col value">Custom</td>
+                  <td className="plan-col value">Up to 8K</td>
+                  <td className="plan-col value">Up to 16K</td>
+                  <td className="plan-col value">Up to 32K</td>
+                  <td className="plan-col value">Custom (up to 128K)</td>
                 </tr>
                 <tr>
                   <td className="feature-name">Output tokens / request</td>
-                  <td className="plan-col value">Up to 512</td>
-                  <td className="plan-col value">Up to 1k</td>
-                  <td className="plan-col value">Up to 4k</td>
-                  <td className="plan-col value">Custom</td>
+                  <td className="plan-col value">Up to 2K</td>
+                  <td className="plan-col value">Up to 4K</td>
+                  <td className="plan-col value">Up to 8K</td>
+                  <td className="plan-col value">Custom (up to 128K)</td>
                 </tr>
 
                 {/* Pricing & Billing */}
