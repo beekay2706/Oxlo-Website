@@ -121,7 +121,7 @@ export default function Pricing() {
                 whileInView={{ opacity: 1, translateY: 0 }}
               >
                 <p className="home-desc">
-                  One fixed monthly price. No billing surprises. No usage calculations. Start free and scale when you are ready.
+                  One fixed monthly price. No billing surprises. No&nbsp;usage calculations.<br/>Start free and scale when you&apos;re ready.
                 </p>
               </motion.div>
             </motion.div>
@@ -279,46 +279,34 @@ export default function Pricing() {
               </div>
 
               <div className="card enterprise">
-                <div className="badge hot">30% Off</div>
                 <div className="card-up">
+                  <p className="enterprise-for-label">FOR HIGH-VOLUME TEAMS</p>
                   <h3>Enterprise</h3>
-                  <p className="subtitle">For teams currently spending $200 or more per month on AI inference.</p>
+                  <p className="subtitle">For teams ready to cut their AI infrastructure costs significantly.</p>
                 </div>
-                <div className="price">
-                  <span className="enterprise-highlight">30%</span>
-                  <span> off your AI bill</span>
+                <div className="enterprise-commitment-box">
+                  <p className="commitment-label">&mdash; OUR COMMITMENT</p>
+                  <p className="commitment-heading">30% off your current AI&nbsp;bill.</p>
+                  <p className="commitment-subtext"><strong>Guaranteed.</strong> For teams spending $200 or more per month on AI inference with any provider.</p>
                 </div>
-                <div className="limit-title">Includes:</div>
-                <ul>
-                  <li>
-                    <span className="bullet"></span> Custom request volumes
-                  </li>
-                  <li>
-                    <span className="bullet"></span> Dedicated capacity & SLA
-                  </li>
-                </ul>
                 <Button
-                  title="Book a Call"
+                  title="Book a Call →"
                   link="https://calendly.com/oxlo_ai/enterprise"
-                  size="btn-sm"
-                  theme="dark"
+                  size="btn-md"
                 />
-                <p className="payment-info">No commitment. Explore what&apos;s possible.</p>
+                <p className="payment-info">No commitment. 30 minute conversation.</p>
                 <div className="limit-title">
                   Everything in Premium, plus
                 </div>
                 <ul>
                   <li>
-                    <CircleCheckBig size={16} strokeWidth={1.5} /> 30% guaranteed cost reduction
+                    <CircleCheckBig size={16} strokeWidth={1.5} /> Custom usage limits
                   </li>
                   <li>
-                    <CircleCheckBig size={16} strokeWidth={1.5} /> Dedicated support & SLA
+                    <CircleCheckBig size={16} strokeWidth={1.5} /> Dedicated support
                   </li>
                   <li>
-                    <CircleCheckBig size={16} strokeWidth={1.5} /> Shared team usage dashboard
-                  </li>
-                  <li>
-                    <CircleCheckBig size={16} strokeWidth={1.5} /> Custom model selection
+                    <CircleCheckBig size={16} strokeWidth={1.5} /> Tailored deployment options
                   </li>
                 </ul>
               </div>

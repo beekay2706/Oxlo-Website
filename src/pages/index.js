@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from 'next/link'
@@ -123,7 +123,18 @@ const howToSchema = {
   ]
 };
 
+// Fallback stats in case API is unavailable
+const FALLBACK_STATS = { users: 700, models_available: 30, countries: 100, tokens_display: "388M" };
+
 export default function Home() {
+  const [stats, setStats] = useState(FALLBACK_STATS);
+
+  useEffect(() => {
+    fetch("https://api.oxlo.ai/stats")
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(data => setStats(data))
+      .catch(() => {}); // Keep fallback stats on error
+  }, []);
 
   const pricingFeatures = [
     { name: "Request-based pricing (not tokens)", oxlo: true, others: false },
@@ -211,10 +222,10 @@ export default function Home() {
                 </Link>
                 <h1 className="hero-heading">
                   <span className="break">Unpredictable AI bills?</span>
-                  <span className="break">We fixed that</span>
+                  <span className="break hero-highlight">We fixed that</span>
                 </h1>
                 <p className="home-desc">
-                  Oxlo.ai gives you a flat monthly plan for AI inference. One fixed bill. Every month. Regardless of how much you build.
+                  Oxlo.ai gives you a flat monthly plan for AI inference. <span style={{ whiteSpace: 'nowrap' }}>One fixed bill.</span> Every month. Regardless of how much you build.
                 </p>
                 <Button
                   title="Get started for free"
@@ -240,9 +251,32 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-          {/* <div className="highlight-note">
-            <Image src={rocketColored} alt="Rocket" /> 1500+ early access signups in our first week
-          </div> */}
+          {/* Stats Strip - above achievement banners for first-look visibility */}
+          <motion.div
+            className="stats-strip"
+            viewport={{ once: true }}
+            transition={{ ease: "easeInOut", duration: 0.75 }}
+            initial={{ opacity: 0, translateY: 30 }}
+            whileInView={{ opacity: 1, translateY: 0 }}
+            style={{ marginTop: '40px', marginBottom: '20px' }}
+          >
+            <div className="stats-strip__item">
+              <div className="stats-strip__number"><span className="stats-strip__accent">{stats.users}</span>+</div>
+              <div className="stats-strip__label">Active Users</div>
+            </div>
+            <div className="stats-strip__item">
+              <div className="stats-strip__number"><span className="stats-strip__accent">{stats.models_available}</span>+</div>
+              <div className="stats-strip__label">Models Available</div>
+            </div>
+            <div className="stats-strip__item">
+              <div className="stats-strip__number"><span className="stats-strip__accent">{stats.countries}</span>+</div>
+              <div className="stats-strip__label">Countries</div>
+            </div>
+            <div className="stats-strip__item">
+              <div className="stats-strip__number"><span className="stats-strip__accent">{stats.tokens_display}</span>+</div>
+              <div className="stats-strip__label">Tokens Processed</div>
+            </div>
+          </motion.div>
           <div className="achievement-wrap">
             <Link href="https://stlpartners.com/articles/edge-computing/50-edge-computing-companies-to-watch-in-2026/"
               target="_blank" rel="noopener">
@@ -255,36 +289,6 @@ export default function Home() {
               <Image src={TopProd} alt="AI" />
             </Link>
           </div>
-        </div>
-      </section>
-
-      {/* Stats Strip */}
-      <section className="common-section" style={{ paddingTop: '10px', paddingBottom: '10px' }}>
-        <div className="container">
-          <motion.div
-            className="stats-strip"
-            viewport={{ once: true }}
-            transition={{ ease: "easeInOut", duration: 0.75 }}
-            initial={{ opacity: 0, translateY: 30 }}
-            whileInView={{ opacity: 1, translateY: 0 }}
-          >
-            <div className="stats-strip__item">
-              <div className="stats-strip__number"><span className="stats-strip__accent">700</span>+</div>
-              <div className="stats-strip__label">Active Users</div>
-            </div>
-            <div className="stats-strip__item">
-              <div className="stats-strip__number"><span className="stats-strip__accent">30</span>+</div>
-              <div className="stats-strip__label">Models Available</div>
-            </div>
-            <div className="stats-strip__item">
-              <div className="stats-strip__number"><span className="stats-strip__accent">100</span>+</div>
-              <div className="stats-strip__label">Countries</div>
-            </div>
-            <div className="stats-strip__item">
-              <div className="stats-strip__number"><span className="stats-strip__accent">388M</span>+</div>
-              <div className="stats-strip__label">Tokens Processed</div>
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -307,7 +311,7 @@ export default function Home() {
                   initial={{ opacity: 0, translateX: -75 }}
                   whileInView={{ opacity: 1, translateX: 0 }}
                 >
-                  Ready to build? Create a free account and start shipping without worrying about your AI bill.
+                  Ready to build? Create a free account and start shipping without worrying about your <span style={{ whiteSpace: 'nowrap' }}>AI bill.</span>
                 </motion.h1>
                 <motion.div
                   viewport={{ once: true }}
@@ -402,7 +406,7 @@ export default function Home() {
               initial={{ opacity: 0, translateY: 50 }}
               whileInView={{ opacity: 1, translateY: 0 }}
             >
-              Token billing makes your AI infrastructure costs unpredictable. Oxlo.ai is your go-to inference platform for flat monthly pricing. Here is how we compare.
+              Token billing makes your AI infrastructure costs unpredictable. Oxlo.ai is your go-to inference platform for flat monthly pricing.<br/>Here is how we compare.
             </motion.p>
           </div>
 

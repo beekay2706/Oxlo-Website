@@ -1189,6 +1189,12 @@ button.btn {
   font-size: 48px;
 }
 
+.hero-highlight {
+  color: #03F7B5 !important;
+  font-size: 0.72em;
+  font-weight: 700;
+}
+
 .connect-hero-section .hero-heading {
   font-size: 52px;
   line-height: 76px;
@@ -4167,6 +4173,58 @@ textarea:-webkit-autofill:focus {
   to {
     background-position: 200% center;
   }
+}
+
+/* Enterprise card — FOR HIGH-VOLUME TEAMS label */
+.enterprise-for-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+/* Enterprise commitment box — green bordered card within the card */
+.enterprise-commitment-box {
+  background: linear-gradient(145deg, rgba(3, 247, 182, 0.08) 0%, rgba(3, 247, 182, 0.02) 100%);
+  border: 1px solid rgba(3, 247, 182, 0.25);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 25px;
+  /* Match the combined height of .price + .limit-title + first ul in other cards */
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.commitment-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #03F7B5;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.commitment-heading {
+  font-family: var(--Unbounded);
+  font-weight: var(--bold);
+  font-size: 20px;
+  color: #03F7B5;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.commitment-subtext {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.45;
+}
+
+.commitment-subtext strong {
+  color: #fff;
 }
 
 .badge {
