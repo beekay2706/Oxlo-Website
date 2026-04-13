@@ -285,7 +285,7 @@ export default function Pricing() {
                   <p className="subtitle">For teams ready to cut their AI infrastructure costs significantly.</p>
                 </div>
                 <div className="enterprise-commitment-box">
-                  <p className="commitment-label">&mdash; OUR COMMITMENT</p>
+                  <p className="commitment-label">OUR COMMITMENT</p>
                   <p className="commitment-heading">30% off your current AI&nbsp;bill.</p>
                   <p className="commitment-subtext"><strong>Guaranteed.</strong> For teams spending $200 or more per month on AI inference with any provider.</p>
                 </div>
