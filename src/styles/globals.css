@@ -4212,9 +4212,19 @@ textarea:-webkit-autofill:focus {
   font-family: var(--Unbounded);
   font-weight: var(--bold);
   font-size: 20px;
-  color: #03F7B5;
   line-height: 1.25;
   margin-bottom: 8px;
+  background: linear-gradient(
+    90deg,
+    #03F7B5,
+    #00B1FF,
+    #03F7B5
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  animation: pan-gradient 3s linear infinite;
 }
 
 .commitment-subtext {
