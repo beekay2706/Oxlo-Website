@@ -258,6 +258,36 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Stats Strip */}
+      <section className="common-section" style={{ paddingTop: '10px', paddingBottom: '10px' }}>
+        <div className="container">
+          <motion.div
+            className="stats-strip"
+            viewport={{ once: true }}
+            transition={{ ease: "easeInOut", duration: 0.75 }}
+            initial={{ opacity: 0, translateY: 30 }}
+            whileInView={{ opacity: 1, translateY: 0 }}
+          >
+            <div className="stats-strip__item">
+              <div className="stats-strip__number"><span className="stats-strip__accent">700</span>+</div>
+              <div className="stats-strip__label">Active Users</div>
+            </div>
+            <div className="stats-strip__item">
+              <div className="stats-strip__number"><span className="stats-strip__accent">30</span>+</div>
+              <div className="stats-strip__label">Models Available</div>
+            </div>
+            <div className="stats-strip__item">
+              <div className="stats-strip__number"><span className="stats-strip__accent">100</span>+</div>
+              <div className="stats-strip__label">Countries</div>
+            </div>
+            <div className="stats-strip__item">
+              <div className="stats-strip__number"><span className="stats-strip__accent">388M</span>+</div>
+              <div className="stats-strip__label">Tokens Processed</div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Cost Calculator - positioned after hero */}
       <section className="common-section" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
         <div className="container">
